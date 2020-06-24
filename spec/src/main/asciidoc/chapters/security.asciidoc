@@ -1,0 +1,116 @@
+[[security]]
+Security
+--------
+
+[[security_introduction]]
+Introduction
+~~~~~~~~~~~~
+
+Guarding against malicious attacks is a great concern for web application developers. In particular, MVC applications that accept
+input from a browser are often targetted by attackers. Two of the most common forms of attacks are cross-site request forgery (CSRF) 
+and cross-site scripting (XSS). This chapter explores techniques to prevent these type of attacks with the aid of the MVC API.
+
+[[cross-site-request-forgery]]
+Cross-site Request Forgery
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cross-site Request Forgery (CSRF) is a type of attack in which a user, who has a trust relationship with a certain site, is mislead into
+executing some commands that exploit the existence of such a trust relationship. The canonical example for this attack is that of a user
+unintentionally carrying out a bank transfer while visiting another site.
+
+The attack is based on the inclusion of a link or script in a page that accesses a site to which the user is known or assumed to have been
+authenticated (trusted). Trust relationships are often stored in the form of cookies that may be active while the user is visiting other
+sites. For example, such a malicious site could include the following HTML snippet:
+
+[source,html]
+----
+<img src="http://yourbank.com/transfer?from=yours&to=mine&sum=1000000">
+----
+
+This will result in the browser executing a bank transfer in an attempt to load an image.
+
+In practice, most sites require the use of form posts to submit requests such as bank transfers. The common way to prevent CSRF attacks is by
+embedding additional, difficult-to-guess data fields in requests that contain sensible commands. This additional data, known as a token, is
+obtained from the trusted site but unlike cookies it is never stored in the browser.
+
+MVC implementations provide CSRF protection using the `Csrf` object and the `@CsrfProtected` annotation.
+[tck-testable tck-id-csrf-obj]#The `Csrf` object is available to applications via the injectable `MvcContext` type or in EL as `mvc.csrf`#.
+For more information about `MvcContext`, please refer to the <<mvc_context>> section.
+
+[tck-testable tck-id-csrf-hidden-field]#Applications may use the `Csrf` object to inject a hidden field in a form that can be validated upon submission#.
+Consider the following JSP:
+
+[source,html,numbered]
+----
+<html>
+    <head>
+        <title>CSRF Protected Form</title>
+    </head>
+    <body>
+        <form action="csrf" method="post" accept-charset="utf-8">
+            <input type="submit" value="Click here"/>
+            <input type="hidden" name="${mvc.csrf.name}"
+                value="${mvc.csrf.token}"/>
+        </form>
+    </body>
+</html>
+----
+
+The hidden field will be submitted with the form, giving the MVC implementation the opportunity to verify the token and ensure the
+validity of the post request.
+
+Another way to convey this information to and from the client is via an HTTP header.
+[tck-testable tck-id-csrf-verify]#MVC implementations are REQUIRED to support CSRF tokens both as form fields (with the help of the application developer as shown above) and as HTTP headers#.
+
+The application-level property `javax.mvc.security.CsrfProtection` enables CSRF protection when set to one of the possible values defined in `javax.mvc.security.Csrf.CsrfOptions`.
+[tck-testable tck-id-csrf-opt-default]#The default value of this property is `CsrfOptions.EXPLICIT`#.
+[tck-testable tck-id-csrf-inject-header]#Any other value than `CsrfOptions.OFF` will automatically inject a CSRF token as an HTTP header#.
+[tck-testable tck-id-csrf-custom-header-name]#The actual name of the header can be configured via the `Csrf.CSRF_HEADER_NAME` configuration property#.
+[tck-testable tck-id-csrf-default-header-name]#The default name of the header is `Csrf.DEFAULT_CSRF_HEADER_NAME`#.
+
+[tck-testable tck-id-csrf-implicit]#Automatic validation is enabled by setting this property to `CsrfOptions.IMPLICIT`, in which case all post requests must include either an HTTP header or a hidden field with the correct token#.
+[tck-testable tck-id-csrf-explict]#Finally, if the property is set to `CsrfOptions.EXPLICIT` then application developers must annotate controllers using `@CsrfProtected` to manually enable validation as shown in the following example#.
+
+[source,java,numbered]
+----
+@Path("csrf")
+@Controller
+public class CsrfController {
+
+    @GET
+    public String getForm() {
+        return "csrf.jsp"; // Injects CSRF token
+    }
+
+    @POST
+    @CsrfProtected // Required for CsrfOptions.EXPLICIT
+    public void postForm(@FormParam("greeting") String greeting) {
+        // Process greeting
+    }
+}
+----
+
+[tck-testable tck-id-csrf-mediatype]#MVC implementations are required to support CSRF validation of tokens for controllers annotated with `@POST` and consuming the media type `x-www-form-urlencoded`#;
+other media types and scenarios may also be supported but are OPTIONAL.
+
+If CSRF protection is enabled for a controller method and the CSRF validation fails (because the token is either missing or invalid),
+[tck-testable tck-id-csrf-exception]#the MVC implementation MUST throw a `javax.mvc.security.CsrfValidationException`#.
+[tck-testable tck-id-csrf-default-mapper]#The implementation MUST provide a default exception mapper for this exception which handles it by responding with a 403 (Forbidden) status code#.
+[tck-testable tck-id-csrf-custom-mapper]#Applications MAY provide a custom exception mapper for `CsrfValidationException` to change this default behavior#.
+
+[[cross-site-scripting]]
+Cross-site Scripting
+~~~~~~~~~~~~~~~~~~~~
+
+Cross-site scripting (XSS) is a type of attack in which snippets of scripting code are injected and later executed when returned back from a
+server. The typical scenario is that of a website with a search field that does not validate its input, and returns an error message that
+includes the value that was submitted. If the value includes a snippet of the form `<script>...</script>` then it will be executed by the browser when
+the page containing the error is rendered.
+
+There are lots of different variations of this the XSS attack, but most can be prevented by ensuring that the data submitted by clients is
+properly _sanitized_ before it is manipulated, stored in a database, returned to the client, etc. Data escaping/encoding is the recommended
+way to deal with untrusted data and prevent XSS attacks.
+
+[tck-testable tck-id-xss-encoders-obj]#MVC applications can gain access to encoders through the `MvcContext` object#;
+[tck-testable tck-id-xss-escaping]#the methods defined by `javax.mvc.security.Encoders` can be used by applications to contextually encode data in an attempt to prevent XSS attacks#.
+The reader is referred to the Javadoc for this type for further information.

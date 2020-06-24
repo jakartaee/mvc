@@ -1,0 +1,74 @@
+[[view_engines]]
+View Engines
+------------
+
+This chapter introduces the notion of a view engine as the mechanism by which views are processed in MVC. 
+The set of available view engines is extensible via CDI, enabling applications as well as other frameworks to provide support for additional view languages.
+
+[[view_engines_introduction]]
+Introduction
+~~~~~~~~~~~~
+
+A _view engine_ is responsible for processing views. In this context, processing entails (i) locating and loading a view (ii) preparing any
+required models and (iii) rendering the view and writing the result back to the client.
+
+[tck-testable tck-id-jsp-facelets]#Implementations MUST provide built-in support for JSPs and Facelets view engines#. 
+Additional engines may be supported via an extension mechanism based on CDI. 
+[tck-testable tck-id-cdi-discovery]#Namely, any CDI bean that implements the `javax.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
+
+This is the interface that must be implemented by all MVC view engines:
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/engine/ViewEngine.java[lines=19..-1]
+----
+
+[[selection_algorithm]]
+Selection Algorithm
+~~~~~~~~~~~~~~~~~~~
+
+[tck-testable tck-id-selection-algo]#Implementations should perform the following steps while trying to find a suitable view engine for a view#.
+
+. Lookup all instances of `javax.mvc.engine.ViewEngine` available via CDI.
+. Call `supports` on every view engine found in the previous step, discarding those that return `false`.
+. If the resulting set is empty, return `null`.
+. Otherwise, sort the resulting set in descending order of priority using the integer value from the `@Priority` annotation decorating the view engine class or the default value `ViewEngine.PRIORITY_APPLICATION` if the annotation is not present.
+. Return the first element in the resulting sorted set, that is, the view engine with the highest priority that supports the given view.
+
+If a view engine that can process a view is not found, implementations SHOULD throw a corresponding exception and stop to process the request.
+
+The `processView` method has all the information necessary for processing in the `ViewEngineContext`, including the view, a reference to `Models`, as well as the underlying `OutputStream` that can be used to send the result to the client. 
+
+Prior to the view render phase, all entries available in `Models` MUST be bound in such a way that they become available to the view being processed. 
+The exact mechanism for this depends on the actual view engine implementation. 
+[tck-testable tck-id-models-binding]#In the case of the built-in view engines for JSPs and Facelets, entries in `Models` must be bound by calling `HttpServletRequest.setAttribute(String, Object)`#.
+Calling this method ensures access to the named models from EL expressions.
+
+A view returned by a controller method represents a path within an application archive. 
+[tck-testable tck-id-path-relative]#If the path is relative, does not start with `/`, implementations MUST resolve view paths relative to the view folder, which defaults to `/WEB-INF/views/`#. 
+[tck-testable tck-id-path-absolute]#If the path is absolute, no further processing is required#. 
+It is recommended to use relative paths and a location under `WEB-INF` to prevent direct access to views as static resources.
+
+[[faces_servlet]]
+FacesServlet
+~~~~~~~~~~~~
+
+Because Facelets support is not enabled by default, MVC applications that use Facelets are required to package a `web.xml` deployment descriptor with the following entry mapping the extension `*.xhtml` as shown next:
+
+[source,xml,numbered]
+----
+<servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+</servlet-mapping>
+----
+
+Alternatively to a `web.xml` deployment descriptor an empty `faces-config.xml` file can be placed in the `WEB-INF` folder to enable Facelets support.
+
+It is worth noting that if you opt to use Facelets as a view technology for your MVC application, regular JSF post-backs will not be processed by the MVC runtime. 
+The usage of `<h:form />` and depending form components like `<h:inputText />` is not recommended as they would be the entry point to a real JSF application.

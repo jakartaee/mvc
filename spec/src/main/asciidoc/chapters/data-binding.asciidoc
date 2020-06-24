@@ -1,0 +1,165 @@
+[[data_binding]]
+== Data Binding
+
+This chapter discusses data binding in the MVC API. 
+Data binding is based on the underlying mechanism provided by JAX-RS, 
+but with additional support for i18n requirements and for handling data binding errors within the controller.
+
+[[data_binding_intro]]
+=== Introduction
+
+JAX-RS provides support for binding request parameters (like form/query parameters) to resource fields or resource method parameters. 
+Starting with JAX-RS 2.0, developers can also specify validation constraints using Bean Validation annotations. 
+In this case submitted values are automatically validated against the given constraints and rejected if validation fails.
+
+Let's have a look at the following resource for an example:
+
+[source,java,numbered]
+----
+@Path("form")
+public class FormResource {
+
+    @FormParam("age") 
+    @Min(18) 
+    private int age;
+
+    @POST
+    public Response handlePost() {
+        // ...
+    }
+}
+----
+
+This resource uses a `@FormParam` annotation to bind the value of the `age` form parameter to a resource field.
+It also uses the Bean Validation annotation `@Min` to specify a constraint on the value.
+
+When JAX-RS binds the submitted data to the field, two types of errors are possible:
+
+[horizontal]
+Binding Error:: 
+  This type occurs if JAX-RS is unable to convert the submitted value into the desired target Java type. 
+  For the resource shown above, such an error will be thrown if the user submits some arbitrary string like `foobar` which cannot be converted into an integer.
+Validation Error::  
+  If the submitted value can be converted into the target type, JAX-RS will validate the data according to the Bean Validation constraints. 
+  In our example submitting the value 16 would be considered invalid and therefore result in a constraint violation.
+  
+Unfortunately the JAX-RS data binding mechanism doesn't work well for web applications:
+
+  * Both binding and validation errors will cause JAX-RS to throw an exception which can only be handled by an `ExceptionMapper`. 
+    Especially JAX-RS won't execute the resource method if errors were detected.
+    This is problematic, because typically web applications will want to display the submitted form again and include a message explaining why the submission failed.
+    Implementing such a requirement using an `ExceptionMapper` is not feasible.
+  * The JAX-RS data binding is not locale-aware. 
+    This is a problem especially for numeric data types containing fraction digits (like `double`, `float`, `BigDecimal`, etc). 
+    By default, JAX-RS will always assume the US number format.
+    
+[[mvc_binding_annotation]]
+=== @MvcBinding annotation
+
+MVC addresses the shortcomings of the standard JAX-RS data binding by providing a special data binding mode optimized for web applications. 
+[tck-testable tck-id-mvc-binding]#You can enable the MVC specific data binding by adding a `@MvcBinding` annotation to the corresponding controller field or method parameter#.
+
+The following example shows a controller which uses a MVC binding on a controller field.
+
+[source,java,numbered]
+----
+@Controller
+@Path("form")
+public class FormController {
+
+    @MvcBinding
+    @FormParam("age") 
+    @Min(18) 
+    private int age;
+
+    @POST
+    public String processForm() {
+        // ...
+    }
+}
+----
+
+Please note that usually `@MvcBinding` will be used with `@FormParam` and `@QueryParam` bindings, as they are very common in web application.
+However, depending on the specific use case, it may also be useful to use it with other parameter binding types.
+[tck-testable tck-id-all-binding-annotations]#Therefore, MVC implementations MUST support `@MvcBinding` with all JAX-RS binding annotations#.
+
+The following sections will describe the differences from traditional JAX-RS data binding in detail.
+
+[[error_handling_bindingresult]]
+=== Error handling with BindingResult
+
+As mentioned in the first section, JAX-RS data binding aborts request processing for any binding or validation error.
+This means, that a resource method will only be invoked if all bindings were successful.
+
+MVC bindings handle such errors in a different way.
+[tck-testable tck-id-invoke-controller]#An MVC implementation is required to invoke the matched controller method even if binding or validation errors occurred#.
+[tck-testable tck-id-inject-binding-result]#Controllers can inject a request-scoped instance of `BindingResult` to access details about potential data binding errors#.
+This allows controllers to handle such errors themselves, which typically means that human-readable error messages are presented to the user when the next view is rendered.
+
+The following example shows a controller which uses `BindingResult` to handle data binding errors:
+
+[source,java,numbered]
+----
+@Controller
+@Path("form")
+public class FormController {
+
+    @MvcBinding
+    @FormParam("age") 
+    @Min(18) 
+    private int age;
+    
+    @Inject
+    private BindingResult bindingResult;
+
+    @Inject
+    private Models models;
+
+    @POST
+    public String processForm() {
+    
+        if( bindingResult.isFailed() ) {
+            models.put( "errors", bindingResult.getAllMessages() );
+            return "form.jsp";
+        }
+        
+        // process the form request
+    
+    }
+}
+----
+
+Please note that it is very important for a controller to actually check the `BindingResult` for errors if it uses MVC bindings.
+If a binding failed and the controller processes the value without checking for errors, the bound value may be empty or contain an invalid value.
+
+MVC implementations SHOULD log a warning if a request created data binding errors but the controller didn't invoke any method on `BindingResult`.
+
+[[converting_parameters]]
+=== Converting to Java types
+
+The standard JAX-RS data binding doesn't work very well for web application, 
+because it isn't locale-aware and some standard HTML form elements submit data which cannot easily be bound to matching Java types 
+(e.g. checkboxes are submitting `on` if checked and JAX-RS is expecting `true` for boolean values).
+
+MVC implementations are required to apply the following data conversion rules if a binding is annotated with `@MvcBinding`.
+
+[[numeric_types]]
+==== Numeric types
+
+Implementations MUST support `int`, `long`, `float`, `double`, `BigDecimal`, `BigInteger` and corresponding wrapper types for MVC bindings.
+Support for other numeric types is optional. 
+[tck-testable tck-id-convert-numeric]#When converting values to these numeric Java types, MVC implementations MUST use the current _request locale_ for parsing non-empty strings#.
+Typically, an implementation will use a `NumberFormat` instance initialized with the corresponding locale for converting the data.
+[tck-testable tck-id-convert-empty-numeric]#Empty strings are either converted to `null` or to the default value of the corresponding primitive data type#.
+Please refer to the <<i18n>> section for details about the MVC request locale.
+
+[[boolean_type]]
+==== Boolean type
+
+[tck-testable tck-id-convert-boolean]#When an MVC implementation converts a non-empty string to a `boolean` primitive type or the `java.lang.Boolean` wrapper type, it MUST convert both `true` and `on` to the boolean `true` and all others strings to `false`#.
+[tck-testable tck-id-convert-empty-boolean]#Empty strings are converted to `false` in case of the primitive `boolean` type and to `null` for the wrapper type#.
+  
+[[other_types]]
+==== Other types
+  
+The conversion rules for all other Java types are implementation-specific.

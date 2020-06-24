@@ -1,0 +1,386 @@
+[[mvc]]
+Models, Views and Controllers
+-----------------------------
+
+This chapter introduces the three components that comprise the
+ architectural pattern: models, views and controllers.
+
+[[controllers]]
+Controllers
+~~~~~~~~~~~
+
+[tck-testable tck-id-ctrl-method]#An _MVC controller_ is a JAX-RS [<<jaxrs20,5>>] resource method decorated by `@Controller`#.
+[tck-testable tck-id-ctrl-class]#If this annotation is applied to a class, then all resource methods in it are regarded as controllers#.
+[tck-testable tck-id-ctrl-hybrid]#Using the `@Controller` annotation on a subset of methods defines a hybrid class in which certain methods are controllers and others are traditional JAX-RS resource methods.#
+
+A simple hello-world controller can be defined as follows:
+
+[source,java,numbered]
+----
+@Path("hello")
+public class HelloController {
+
+    @GET 
+    @Controller 
+    public String hello(){
+        return "hello.jsp";
+    }
+}
+----
+In this example, `hello` is a controller method that returns a path to a JavaServer Page (JSP). 
+The semantics of controller methods differ slightly from JAX-RS resource methods;
+[tck-testable tck-id-return-string]#in particular, a return type of `String` is interpreted as a view path rather than text content#.
+[tck-testable tck-id-default-mediatype]#Moreover, the default media type for a response is assumed to be `text/html`, but otherwise can be declared using `@Produces` just like in JAX-RS#.
+
+A controller’s method return type determines how its result is processed:
+
+void:: [tck-testable tck-id-return-void]#A controller method that returns void is REQUIRED to be decorated by `@View`#.
+String:: [tck-testable tck-id-return-string2]#A string returned is interpreted as a view path#.
+Response:: [tck-testable tck-id-return-response]#A JAX-RS `Response` whose entity’s type is one of the above#.
+
+The following class defines equivalent controller methods:
+
+
+[source,java,numbered]
+----
+@Controller
+@Path("hello")
+public class HelloController {
+
+    @GET @Path("void")
+    @View("hello.jsp")
+    public void helloVoid() {
+    }
+
+    @GET @Path("string")
+    public String helloString() {
+        return "hello.jsp";
+    }
+
+    @GET @Path("response")
+    public Response helloResponse() {
+        return Response.status(Response.Status.OK)
+            .entity("hello.jsp")
+            .build();
+    }
+}
+----
+
+Controller methods that return a non-void type may also be decorated with `@View` as a way to specify a _default_ view for the controller.
+[tck-testable tck-id-non-null-viewable]#The default view MUST be used only when such a non-void controller method returns a `null` value#.
+
+Note that, even though controller methods return types are restricted as explained above, MVC does not impose any restrictions on parameter types available to controller methods:
+i.e.,
+[tck-testable tck-id-inject-param-types]#all parameter types injectable in JAX-RS resources are also available in controllers#.
+[tck-testable tck-id-inject-field-props]#Likewise, injection of fields and properties is unrestricted and fully compatible with JAX-RS#.
+Note the restrictions explained in Section <<controller_instances>>.
+
+Controller methods handle a HTTP request directly. Sub-resource locators as described in the JAX-RS Specification [<<jaxrs20,5>>] are not supported by MVC.
+
+[[controller_instances]]
+Controller Instances
+^^^^^^^^^^^^^^^^^^^^
+
+Unlike in JAX-RS where resource classes can be native (created and managed by JAX-RS), CDI beans, managed beans or EJBs,
+[tck-testable tck-id-ctrl-cdi]#MVC classes are REQUIRED to be CDI-managed beans only#.
+[tck-testable tck-id-ctrl-cdi-hybrid]#It follows that a hybrid class that contains a mix of JAX-RS resource methods and MVC controllers must also be CDI managed#.
+
+[tck-testable tck-id-request-scope-default]#Like in JAX-RS, the default resource class instance lifecycle is _per-request_#.
+Implementations MAY support other lifecycles via CDI; the same caveats that apply to JAX-RS classes in other lifecycles applied to MVC classes.
+[tck-testable tck-id-scope-proxy]#In particular, CDI may need to create proxies when, for example, a per-request instance is as a member of a per-application instance#.
+See [<<jaxrs20,5>>] for more information on lifecycles and their caveats.
+
+[[response]]
+Response
+^^^^^^^^
+
+[tck-testable tck-id-response-header]#Returning a `Response` object gives applications full access to all the parts in a response, including the headers#.
+For example, an instance of `Response` can modify the HTTP status code upon encountering an error condition; 
+JAX-RS provides a fluent API to build responses as shown next.
+
+[source,java,numbered]
+----
+@GET
+@Controller
+public Response getById(@PathParam("id") String id) {
+    if (id.length() == 0) {
+        return Response.status(Response.Status.BAD_REQUEST)
+            .entity("error.jsp")
+            .build();
+    }
+    //...
+}
+----
+
+Direct access to `Response` enables applications to override content types, set character encodings, set cache control policies, trigger an HTTP redirect, etc. 
+For more information, the reader is referred to the Javadoc for the `Response` class.
+
+[[redirect]]
+Redirect and @RedirectScoped
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As stated in the previous section, [tck-testable tck-id-redirect-response]#controllers can redirect clients by returning a `Response` instance using the JAX-RS API#.
+For example,
+
+[source,java,numbered]
+----
+@GET
+@Controller
+public Response redirect() {
+    return Response.seeOther(URI.create("see/here")).build();
+}
+----
+
+Given the popularity of the POST-redirect-GET pattern,
+[tck-testable tck-id-redirect-prefix]#MVC implementations are REQUIRED to support view paths prefixed by `redirect:` as a more concise way to trigger a client redirect#.
+Using this prefix, the controller shown above can be re-written as follows:
+
+[source,java,numbered]
+----
+@GET
+@Controller
+public String redirect() {
+    return "redirect:see/here";
+}
+----
+
+[tck-testable tck-id-redirect-relative]#In either case, relative paths are resolved relative to the JAX-RS application path# - for more information please refer to the Javadoc for the `seeOther` method.
+It is worth noting that redirects require client cooperation (all browsers support it, but certain CLI clients may not) and result in a completely new request-response cycle in order to access the intended controller.
+If a controller returns a `redirect:` view path, [tck-testable tck-id-redirect-303-302]#MVC implementations SHOULD use the 303 (See other) status code for the redirect, but MAY prefer 302 (Found) if HTTP 1.0 compatibility is required.#
+
+MVC applications can leverage CDI by defining beans in scopes such as request and session. 
+[tck-testable tck-id-scope-request]#A bean in request scope is available only during the processing of a single request#,
+[tck-testable tck-id-scope-session]#while a bean in session scope is available throughout an entire web session which can potentially span tens or even hundreds of requests#.
+
+Sometimes it is necessary to share data between the request that returns a redirect instruction and the new request that is triggered as a result. 
+That is, a scope that spans at most two requests and thus fits between a request and a session scope. 
+For this purpose, the MVC API defines a new CDI scope identified by the annotation `@RedirectScoped`.
+[tck-testable tck-id-scope-redirect]#CDI beans in this scope are automatically created and destroyed by correlating a redirect and the request that follows#.
+The exact mechanism by which requests are correlated is implementation dependent, but popular techniques include URL rewrites and cookies.
+
+Let us assume that `MyBean` is annotated by `@RedirectScoped` and given the name `mybean`, and consider the following controller:
+
+[source,java,numbered]
+----
+@Controller
+@Path("submit")
+public class MyController {
+
+    @Inject
+    private MyBean myBean;
+
+    @POST
+    public String post() {
+        myBean.setValue("Redirect about to happen");
+        return "redirect:/submit";
+    }
+
+    @GET
+    public String get() {
+        return "mybean.jsp"; // mybean.value accessed in JSP
+    }
+}
+----
+
+The bean `myBean` is injected in the controller and available not only during the first `POST`, but also during the subsequent `GET` request,
+enabling _communication_ between the two interactions; the creation and destruction of the bean is under control of CDI, 
+and thus completely transparent to the application just like any other built-in scope.
+
+[[models]]
+Models
+~~~~~~
+
+MVC controllers are responsible for combining data models and views (templates) to produce web application pages. 
+This specification supports two kinds of models: the first is based on CDI `@Named` beans,
+and the second on the `Models` interface which defines a map between names and objects.
+[tck-testable tck-id-builtin-both-models]#MVC provides view engines for JSP and Facelets out of the box, which support both types#.
+For all other view engines supporting the `Models` interface is mandatory,
+support for CDI `@Named` beans is OPTIONAL but highly RECOMMENDED.
+
+Let us now revisit our hello-world example, this time also showing how to update a model. Since we intend to show the two ways in which models
+can be used, we define the model as a CDI `@Named` bean in request scope even though this is only necessary for the CDI case:
+
+[source,java,numbered]
+----
+@Named("greeting")
+@RequestScoped
+public class Greeting {
+
+    private String message;
+
+    public String getMessage() { 
+        return message; 
+    }
+
+    public void setMessage(String message) { 
+        this.message = message; 
+    }
+    //...
+}
+----
+
+[tck-testable tck-id-cdi-model-inject]#Given that the view engine for JSPs supports `@Named` beans, all the controller needs to do is fill out the model and return the view#.
+Access to the model is straightforward using CDI injection:
+
+[source,java,numbered]
+----
+@Path("hello")
+public class HelloController {
+
+    @Inject
+    private Greeting greeting;
+
+    @GET
+    @Controller
+    public String hello() {
+        greeting.setMessage("Hello there!");
+        return "hello.jsp";
+    }
+}
+----
+
+[tck-testable tck-id-cdi-model-el]#This will allow the view to access the greeting using the EL expression# `${hello.greeting}`.
+
+Instead of using CDI beans annotated with `@Named`, [tck-testable tck-id-models-inject]#controllers can also use the `Models` map to pass data to the view#:
+
+[source,java,numbered]
+----
+@Path("hello")
+public class HelloController {
+
+    @Inject
+    private Models models;
+
+    @GET
+    @Controller
+    public String hello() {
+        models.put("greeting", new Greeting("Hello there!"));
+        return "hello.jsp";
+    }
+}
+----
+
+In this example, the model is given the same name as that in the `@Named` annotation above, but using the injectable `Models` map instead.
+
+For more information about view engines see the <<view_engines>> section.
+
+[[views]]
+Views
+~~~~~
+
+A _view_, sometimes also referred to as a template, defines the structure of the output page and can refer to one or more models. 
+It is the responsibility of a _view engine_ to process (render) a view by extracting the information in the models and producing the output page.
+
+Here is the JSP page for the hello-world example:
+
+[source,html,numbered]
+----
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+        <h1>${greeting.message}</h1>                                
+    </body>
+</html>
+----
+
+[tck-testable tck-id-jsp-el]#In a JSP, model properties are accessible via EL# [<<el30,6>>]. In the example above, the property `message` is read from the `greeting` model
+whose name was either specified in a `@Named` annotation or used as a key in the `Models` map, depending on which controller from the <<models>> section triggered this view's processing.
+
+Here is the corresponding example using Facelets instead of JSP:
+
+[source,html,numbered]
+----
+<!DOCTYPE html>
+<html lang="en" xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Hello</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="#{greeting.message}" /> 
+    </h:body>
+</html>
+----
+
+[[mvc_uri]]
+Building URIs in a View
+^^^^^^^^^^^^^^^^^^^^^^^
+
+A typical application requires to build URIs for the view, which often refer to controller methods within the same application.
+Typical examples for such URIs include HTML links and form actions.
+As building URIs manually is difficult and duplicating path patterns between the controller class and the view is error prone,
+MVC provides a simple way to generate URIs using the `MvcContext` class.
+
+See the following controller as an example:
+
+[source,java,numbered]
+----
+@Controller
+@Path("books")
+public class BookController {
+
+    @GET
+    public String list() {
+      // ...
+    }
+
+    @GET
+    @Path("{id}")
+    public String detail( @PathParam("id") long id ) {
+      // ...
+    }
+
+}
+----
+
+Assuming the application is deployed with the context path `/myapp` and is using the application path `/mvc`,
+[tck-testable tck-id-el-access]#URIs for these controller methods can be created with an EL expression# like this:
+
+[source,html]
+----
+<!-- /myapp/mvc/books -->
+${mvc.uri('BookController#list')}
+
+<!-- /myapp/mvc/books/1234 -->
+${mvc.uri('BookController#detail', { 'isbn': 1234 })}
+----
+
+[tck-testable tck-id-class-method-name]#The controller method is referenced using the simple name of the controller class and the corresponding method name separated by `pass:[#]`#.
+[tck-testable tck-id-param-map]#If the URI contains path, query or matrix parameters, concrete values can be supplied using a map#.
+Please note that the keys of this map must match the parameter name used in the `@PathParam`, `@QueryParam` or `@MatrixParam` annotation.
+[tck-testable tck-id-uri-encoding]#MVC implementations MUST apply the corresponding URI encoding rules depending on whether the value is used in a query, path or matrix parameter#.
+
+The syntax used above to reference the controller method works well in most cases.
+However, because of the simple nature of this reference style, it will require controller class names to be unique.
+Also, the references may break if the controller class or method name changes as part of a refactoring.
+
+[tck-testable tck-id-uri-ref]#Therefore, applications can use the `@UriRef` annotation to define a stable and unique name for a controller method#.
+
+[source,java,numbered]
+----
+@Controller
+@Path("books")
+public class BookController {
+
+    @GET
+    @UriRef("book-list")
+    public String list() {
+      // ...
+    }
+
+    // ...
+
+}
+----
+
+Given such a controller class, the view can generate a matching URI by referencing the controller method using this reference.
+
+[source,html]
+----
+<!-- /myapp/mvc/books -->
+${mvc.uri('book-list')}
+----
+
+Please note that this feature will work with JSP, Facelets and all view engines which support invoking methods on CDI model objects.

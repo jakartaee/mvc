@@ -1,0 +1,87 @@
+[[applications]]
+Applications
+------------
+
+This chapter introduces the notion of an MVC application and explains how it relates to a JAX-RS application.
+
+[[mvc_applications]]
+MVC Applications
+~~~~~~~~~~~~~~~~
+
+An MVC application consists of one or more JAX-RS resources that are annotated with `@Controller` and, just like JAX-RS applications, zero or more providers.
+If no resources are annotated with `@Controller`, then the resulting application is a JAX-RS application instead. 
+In general, everything that applies to a JAX-RS application also applies to an MVC application. 
+Some MVC applications may be _hybrid_ and include a mix of MVC controllers and JAX-RS resource methods.
+
+[tck-testable tck-id-application-class]#The controllers and providers that make up an application are configured via an application-supplied subclass of `Application` from JAX-RS#.
+An implementation MAY provide alternate mechanisms for locating controllers, but as in JAX-RS, the use of an `Application` subclass is the only way to guarantee portability.
+
+[tck-testable tck-id-url-space]#The path in the application's URL space in which MVC controllers live must be specified either using the `@ApplicationPath` annotation on the application subclass or in the web.xml as part of the `url-pattern` element#. 
+MVC applications SHOULD use a non-empty path or pattern: i.e., _"/"_ or _"/*"_ should be avoided whenever possible. 
+The reason for this is that MVC implementations often forward requests to the Servlet container, 
+and the use of the aforementioned values may result in the unwanted processing of the forwarded request by the JAX-RS servlet once again.
+
+[[mvc_context]]
+MVC Context
+~~~~~~~~~~~
+
+[tck-testable tck-id-injection]#MVC applications can inject an instance of `MvcContext` to access configuration, security and path-related information#. 
+[tck-testable tck-id-request-scope]#Instances of `MvcContext` are provided by implementations and are always in request scope#.
+[tck-testable tck-id-el-access]#For convenience, the `MvcContext` instance is also available using the name `mvc` in EL#.
+
+As an example, a view can refer to a controller by using the base path available in the `MvcContext` object as follows:
+
+[source,html]
+----
+<a href="${mvc.basePath}/books">Click here</a>
+----
+
+For more information on security see the Chapter on <<security,Security>>; for more information about the `MvcContext` in general, refer to the Javadoc for the type.
+
+[[providers_in_mvc]]
+Providers in MVC
+~~~~~~~~~~~~~~~~
+
+Implementations are free to use their own providers in order to modify the standard JAX-RS pipeline for the purpose of implementing the MVC semantics.
+Whenever mixing implementation and application providers, care should be taken to ensure the correct execution order using priorities.
+
+[[annotation_inheritance]]
+Annotation Inheritance
+~~~~~~~~~~~~~~~~~~~~~~
+
+MVC applications MUST follow the annotation inheritance rules defined by JAX-RS. 
+Namely, MVC annotations may be used on methods of a super-class or an implemented interface.
+[tck-testable tck-id-inheritance]#Such annotations are inherited by a corresponding sub-class or implementation class method provided that the method does not have any MVC or JAX-RS annotations of its own#: 
+i.e., if a subclass or implementation method has any MVC or JAX-RS annotations then all of the annotations on the superclass or interface method are ignored.
+
+[tck-testable tck-id-class-vs-iface]#Annotations on a super-class take precedence over those on an implemented interface#. 
+The precedence over conflicting annotations defined in multiple implemented interfaces is implementation dependent. 
+Note that, in accordance to the JAX-RS rules, inheritance of class or interface annotations is not supported.
+
+[[configuration_in_mvc]]
+Configuration in MVC
+~~~~~~~~~~~~~~~~~~~~
+
+Implementations MUST support configuration via the native JAX-RS configuration mechanism but MAY support other configuration sources.
+
+There are concrete configurations, that all MVC the implementations are `REQUIRED` the support such as: 
+
+- `ViewEngine.VIEW_FOLDER` 
+- `Csrf.CSRF_PROTECTION`
+- `Csrf.CSRF_HEADER_NAME`
+
+Here's a simple example of how you can configure a custom location for the view folder other than the `/WEB-INF/views`, simply by overwriting the `getProperties` method of the subclass `Application`:
+
+[source,java,numbered]
+----
+@ApplicationPath("resources")
+public class MyApplication extends Application {
+
+    @Override
+    public Map<String, Object> getProperties() {
+        final Map<String, Object> map = new HashMap<>();
+        map.put(ViewEngine.VIEW_FOLDER, "/jsp/");
+        return map;
+    }
+}
+----

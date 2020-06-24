@@ -1,0 +1,83 @@
+[[i18n]]
+Internationalization
+--------------------
+
+This chapter introduces the notion of a _request locale_ and describes how MVC handles internationalization and localization.
+
+[[i18n_introduction]]
+Introduction
+~~~~~~~~~~~~
+
+Internationalization and localization are very important concepts for any web application framework.
+Therefore MVC has been designed to make supporting multiple languages and regional differences in applications very easy.
+
+MVC defines the term _request locale_ as the locale which is used for any locale-dependent operation within the lifecycle of a request.
+The request locale MUST be resolved exactly once for each request using the resolving algorithm described in the <<i18n_resolving_algorithm>> section.
+
+These locale-dependent operations include, but are not limited to:
+
+. Data type conversion as part of the data binding mechanism.
+. Formatting of data when rendering it to the view.
+. Generating binding and validation error messages in the specific language.
+
+[tck-testable tck-id-mvc-context-locale]#The request locale is available from `MvcContext` and can be used by controllers, view engines and other components# to perform operations which depend on the current locale.
+The example below shows a controller that uses the request locale to create a `NumberFormat` instance.
+
+
+[source,java,numbered]
+----
+@Controller
+@Path("/foobar")
+public class MyController {
+
+    @Inject
+    private MvcContext mvc;
+    
+    @GET
+    public String get() {
+        Locale locale = mvc.getLocale();
+        NumberFormat format = NumberFormat.getInstance(locale);
+    }
+}
+----
+
+The following sections will explain the locale resolving algorithm and the default resolver provided by the MVC implementation.
+
+[[i18n_resolving_algorithm]]
+Resolving Algorithm
+~~~~~~~~~~~~~~~~~~~
+
+The _locale resolver_ is responsible to detect the request locale for each request processed by the MVC runtime.
+A locale resolver MUST implement the `javax.mvc.locale.LocaleResolver` interface which is defined like this:
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/locale/LocaleResolver.java[lines=21..-1]
+----
+
+There may be more than one locale resolver for a MVC application. Locale resolvers are discovered using CDI.
+[tck-testable tck-id-resolver-discovery]#Every CDI bean implementing the `LocaleResolver` interface and visible to the application participates in the locale resolving algorithm#.
+
+[tck-testable tck-id-resolve-algorithm]#Implementations MUST use the following algorithm to resolve the request locale for each request#:
+
+. Obtain a list of all CDI beans implementing the `LocaleResolver` interface visible to the application’s `BeanManager`.
+. Sort the list of locale resolvers in descending order of priority using the integer value from the `@Priority` annotation decorating the resolver class. +
+If no `@Priority` annotation is present, assume a default priority of `1000`.
+. Call `resolveLocale()` on the first resolver in the list. If the resolver returns `null`, continue with the next resolver in the list. +
+If a resolver returns a non-null result, stop the algorithm and use the returned locale as the request locale.
+
+Applications can either rely on the default locale resolver which is described in the <<i18n_default_resolver>> section
+or provide a custom resolver which implements some other strategy for resolving the request locale.
+A custom strategy could for example track the locale using the session, a query parameter or the server’s hostname.
+
+[[i18n_default_resolver]]
+Default Locale Resolver
+~~~~~~~~~~~~~~~~~~~~~~~
+
+[tck-testable tck-id-default-locale-resolver]#Every MVC implementation MUST provide a default locale resolver with a priority of `0` which resolves the request locale according to the following algorithm#:
+
+. First check whether the client provided an `Accept-Language` request header. If this is the case, the locale with the highest quality factor is returned as the result.
+. If the previous step was not successful, return the system default locale of the server.
+
+Please note that applications can customize the locale resolving process by providing a custom locale resolver with a priority higher than `0`. 
+See the <<i18n_resolving_algorithm>> section for details.

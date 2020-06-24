@@ -1,0 +1,166 @@
+[[introduction]]
+Introduction
+------------
+
+Model-View-Controller, or _MVC_ for short, is a common pattern in Web frameworks where it is used predominantly to build HTML applications.
+The _model_ refers to the application’s data, the _view_ to the application’s data presentation and the _controller_ to the part of the
+system responsible for managing input, updating models and producing output.
+
+Web UI frameworks can be categorized as _action-based_ or _component-based_. In an action-based framework, HTTP requests are
+routed to controllers where they are turned into actions by application code; in a component-based framework, HTTP requests are grouped and
+typically handled by framework components with little or no interaction from application code. In other words, in a component-based framework,
+the majority of the controller logic is provided by the framework instead of the application.
+
+The API defined by this specification falls into the action-based category and is, therefore, not intended to be a replacement for
+component-based frameworks such as JavaServer Faces (JSF) [<<jsf22,1>>], but simply a different approach to building Web applications on the Java EE platform.
+
+[[goals]]
+Goals
+~~~~~
+
+The following are goals of the API:
+
+[horizontal]
+Goal 1:: Leverage existing Java EE technologies like CDI [<<cdi11,2>>] and Bean Validation [<<bv11,3>>].
+Goal 2:: Define a solid core to build MVC applications without necessarily supporting all the features in its first version.
+Goal 3:: Build on top of JAX-RS for the purpose of re-using its matching and binding layers.
+Goal 4:: Provide built-in support for JSPs and Facelets view languages.
+
+[[non_goals]]
+Non-Goals
+~~~~~~~~~
+
+The following are non-goals of the API:
+
+[horizontal]
+Non-Goal 1:: Define a new view (template) language and processor.
+Non-Goal 2:: Support standalone implementations of MVC running outside of Java EE.
+Non-Goal 3:: Support REST services not based on JAX-RS.
+Non-Goal 4:: Provide built-in support for view languages that are not part of Java EE.
+
+It is worth noting that, even though a standalone implementation of MVC that runs outside of Java EE is a non-goal, 
+this specification shall not intentionally prevent implementations to run in other environments, 
+provided that those environments include support for all the EE technologies required by MVC.
+
+[[additional_information]]
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
+
+The issue tracking system for this specification can be found at:
+
+https://github.com/mvc-spec/mvc-spec/issues
+
+The corresponding Javadocs can be found online at:
+
+https://www.mvc-spec.org/spec/
+
+The reference implementation can be obtained from:
+
+https://www.mvc-spec.org/krazo/
+
+The expert group seeks feedback from the community on any aspect of this specification, please send comments to:
+
+jsr371-users@googlegroups.com
+
+[[terminology]]
+Terminology
+~~~~~~~~~~~
+
+Most of the terminology used in this specification is borrowed from other specifications such as JAX-RS and CDI. We use the terms _per-request_
+and _request-scoped_ as well as _per-application_ and _application-scoped_ interchangeably.
+
+[[conventions]]
+Conventions
+~~~~~~~~~~~
+
+The keywords `MUST', `MUST NOT', `REQUIRED', `SHALL', `SHALL NOT', `SHOULD', `SHOULD NOT', `RECOMMENDED', `MAY', and `OPTIONAL' 
+in this document are to be interpreted as described in RFC 2119 [<<rfc2119,4>>].
+
+Java code and sample data fragments are formatted as shown below:
+
+[source,java,numbered]
+----
+package com.example.hello;
+
+public class Hello {
+    public static void main(String args[]){
+        System.out.println("Hello World");
+    }
+}
+----
+
+URIs of the general form http://example.org/[http://example.org/...] and http://example.com/[http://example.com/...] represent application or context-dependent URIs.
+
+All parts of this specification are normative, with the exception of examples, notes and sections explicitly marked as `Non-Normative'.
+Non-normative notes are formatted as shown below.
+
+.Note
+[NOTE]
+This is a note.
+
+[[spec_leads]]
+Specification Leads
+~~~~~~~~~~~~~~~~~~~
+
+The following table lists the current and former specification leads:
+
+[cols="1,1"]
+|===
+|Ivar Grimstad (Individual Member)|(Jan 2017 - present)
+|Christian Kaltepoth (ingenit GmbH & Co. KG)|(May 2017 - present)
+|Santiago Pericas-Geertsen (Oracle)|(Aug 2014 - Jan 2017)
+|Manfred Riem (Oracle)|(Aug 2014 - Jan 2017)
+|===
+
+[[expert_group]]
+Expert Group Members
+~~~~~~~~~~~~~~~~~~~~
+
+This specification is being developed as part of https://jcp.org/en/jsr/detail?id=371[JSR 371] under the Java Community Process. The following are the present expert group members:
+
+[cols="1,1"] 
+|===
+|Ivar Grimstad (Individual Member)
+|Neil Griffin (Liferay, Inc)
+|Joshua Wilson (RedHat)
+|Rodrigo Turini (Caelum)
+|Stefan Tilkov (innoQ Deutschland GmbH)
+|Frank Caputo (Individual Member)
+|Christian Kaltepoth (ingenit GmbH & Co. KG)
+|Woong-ki Lee (TmaxSoft, Inc.)
+|Paul Nicolucci (IBM)
+|Kito D. Mann (Individual Member)
+|Rahman Usta (Individual Member)
+|Florian Hirsch (adorsys GmbH & Co KG)
+|Santiago Pericas-Geertsen (Oracle)
+|Manfred Riem (Oracle)
+|===
+
+The following are former members of the expert group:
+
+[cols="1,1"] 
+|===
+|Guilherme de Azevedo Silveira (Individual Member)
+|
+|===
+
+[[contributors]]
+Contributors
+~~~~~~~~~~~~
+
+The following are the contributors of the specification:
+
+[cols="1,1"]
+|===
+|Daniel Dias dos Santos
+|Phillip Krüger
+|Andreas Badelt
+|
+|===
+
+[[acks]]
+Acknowledgements
+~~~~~~~~~~~~~~~~
+
+During the course of this JSR we received many excellent suggestions. Special thanks to Marek Potociar, Dhiru Pandey and Ed Burns, all from Oracle. 
+In addition, to everyone in the user’s alias that followed the expert discussions and provided feedback, including Peter Pilgrim, Ivar Grimstad, Jozef Hartinger, Florian Hirsch, Frans Tamura, Rahman Usta, Romain Manni-Bucau, Alberto Souza, among many others.

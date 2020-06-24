@@ -1,0 +1,121 @@
+[[events]]
+Events
+------
+
+This chapter introduces a mechanism by which MVC applications can be informed of important events that occur while processing a request.
+This mechanism is based on CDI events that can be fired by implementations and observed by applications.
+
+[[observers]]
+Observers
+~~~~~~~~~
+
+The package `javax.mvc.event` defines a number of event types that MUST be fired by implementations during the processing of a request.
+Implementations MAY extend this set and also provide additional information on any of the events defined by this specification.
+The reader is referred to the implementation’s documentation for more information on event support.
+
+Observing events can be useful for applications to learn about the lifecycle of a request, perform logging, monitor performance, etc.
+[tck-testable tck-id-before-after-controller]#The events `BeforeControllerEvent` and `AfterControllerEvent` are fired around the invocation of a controller#.
+[tck-testable tck-id-after-controller-exception]#Please note that `AfterControllerEvent` is always fired, even if the controller fails with an exception#.
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/event/BeforeControllerEvent.java[lines=22..-1]
+----
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/event/AfterControllerEvent.java[lines=22..-1]
+----
+
+Applications can monitor these events using an observer as shown next.
+
+[source,java,numbered]
+----
+@ApplicationScoped
+public class EventObserver {
+
+    public void onBeforeController(@Observes BeforeControllerEvent e) {
+        System.out.println("URI: " + e.getUriInfo().getRequestUri());
+    }
+
+    public void onAfterController(@Observes AfterControllerEvent e) {
+        System.out.println("Controller: " +
+        e.getResourceInfo().getResourceMethod());
+    }
+}
+----
+
+Observer methods in CDI are defined using the `@Observes` annotation on a parameter position.
+The class `EventObserver` is a CDI bean in application scope whose methods `onBeforeController` and `onAfterController` are called before and after a controller is called.
+
+Each event includes additional information that is specific to the event;
+for example, the events shown in the example above allow applications to get information about the request URI and the resource (controller) selected.
+
+The <<view_engines>> section describes the algorithm used by implementations to select a specific view engine for processing; after a view engine is selected, the method `processView` is called.
+[tck-testable tck-id-before-after-view]#The events `BeforeProcessViewEvent` and `AfterProcessViewEvent` are fired around this call#.
+[tck-testable tck-id-after-view-exception]#Please note that `AfterProcessViewEvent` is always fired, even if the view engine fails with an exception#.
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/event/BeforeProcessViewEvent.java[lines=21..-1]
+----
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/event/AfterProcessViewEvent.java[lines=21..-1]
+----
+
+These events can be observed in a similar manner:
+
+[source,java,numbered]
+----
+@ApplicationScoped
+public class EventObserver {
+
+    public void onBeforeProcessView(@Observes BeforeProcessViewEvent e) {
+        // ...
+    }
+
+    public void onAfterProcessView(@Observes AfterProcessViewEvent e) {
+        // ...
+    }
+}
+----
+
+To complete the example, let us assume that the information about the selected view engine needs to be conveyed to the client.
+To ensure that this information is available to a view returned to the client,
+the `EventObserver` class can inject and update the same request-scope bean accessed by such a view:
+
+[source,java,numbered]
+----
+@ApplicationScoped
+public class EventObserver {
+
+    @Inject
+    private EventBean eventBean;
+
+    public void onBeforeProcessView(@Observes BeforeProcessViewEvent e) {
+        eventBean.setView(e.getView());
+        eventBean.setEngine(e.getEngine());
+    }
+    // ...
+}
+----
+
+For more information about the interaction between views and models, the reader is referred to the <<models>> section.
+
+[tck-testable tck-id-redirect-event]#The last event supported by MVC is `ControllerRedirectEvent`, which is fired just before the MVC implementation returns a redirect status code#.
+[tck-testable tck-id-redirect-after-controller-event]#Please note that this event MUST be fired after `AfterControllerEvent`#.
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}javax/mvc/event/ControllerRedirectEvent.java[lines=23..-1]
+----
+
+CDI events fired by implementations are _synchronous_, so it is recommended that applications carry out only simple tasks in their observer methods,
+avoiding long-running computations as well as blocking calls.
+For a complete list of events, the reader is referred to the Javadoc for the `javax.mvc.event` package.
+
+Event reporting requires the MVC implementations to create event objects before firing.
+In high-throughput systems without any observers the number of unnecessary objects created may not be insignificant.
+For this reason, it is RECOMMENDED for implementations to consider smart firing strategies when no observers are present.

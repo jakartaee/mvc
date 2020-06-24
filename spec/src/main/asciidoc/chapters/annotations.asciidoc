@@ -1,0 +1,44 @@
+[appendix]
+[[annotation_table]]
+Summary of Annotations
+----------------------
+
+
+[cols="1,1,2", options="header"] 
+|===
+|Annotation
+|Target
+|Description
+
+|`Controller`
+|Type or method
+|Defines a resource method as an MVC controller. If
+specified at the type level, it defines all methods in a class
+as controllers.
+
+|`View`
+|Type or method
+|Declares a view for a controller method that returns void.
+If specified at the type level, it applies to all controller
+methods that return void in a class.
+
+|`CsrfValid`
+|Method
+|States that a CSRF token must be validated before
+invoking the controller. Failure to validate the CSRF
+token results in a `ForbiddenException` thrown.
+
+|`RedirectScoped`
+|Type, method or field
+|Specifies that a certain bean is in redirect scope.
+
+|`UriRef`
+|Method
+|Defines a symbolic name for a controller method.
+
+|`MvcBinding`
+|Field, method or parameter
+|Declares that constraint violations will be handled by a
+controller through `BindingResult` instead of triggering
+a `ConstraintViolationException`.
+|===

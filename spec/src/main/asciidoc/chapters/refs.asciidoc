@@ -1,0 +1,30 @@
+:numbered!:
+["bibliography",sectnum="0"]
+
+[[bibliography]]
+
+== Bibliography
+
+[[jsf22]] 
+[1]:: Edward Burns. JavaServer Faces 2.2. JSR, JCP, May 2013 +
+http://jcp.org/en/jsr/detail?id=344
+
+[[cdi11]]
+[2]:: Pete Muir. Context and Dependency Injection for Java EE 1.1 MR. JSR, JCP, April 2014 +
+http://jcp.org/en/jsr/detail?id=346
+
+[[bv11]]
+[3]:: Emmanuel Bernard. Bean Validation 1.1. JSR, JCP, March 2013 +
+http://jcp.org/en/jsr/detail?id=349
+
+[[rfc2119]]
+[4]:: S. Bradner. RFC 2119: Keywords for use in RFCs to Indicate Requirement Levels. RFC, IETF, March 1997 + 
+http://www.ietf.org/rfc/rfc2119.txt
+
+[[jaxrs20]]
+[5]:: Santiago Pericas-Geertsen and Marek Potociar. The Java API for RESTful Web Services 2.0 MR. JSR, JCP, October 2014 +
+http://jcp.org/en/jsr/detail?id=339
+
+[[el30]]
+[6]:: Kin man Chung. Expression Language 3.0. JSR, JCP, May 2013 +
+http://jcp.org/en/jsr/detail?id=341
