@@ -1,29 +1,4 @@
-= MVC 1.0: Model-View-Controller Specification
-Ivar Grimstad, Christian Kaltepoth
-Version 1.0 Final Release, January 2020
-
-// Settings:
-:experimental:
-:reproducible:
-:icons: font
-:listing-caption: Listing
-:sectnums:
-:toc:
-:toclevels: 3
-:autofit-option:
-ifdef::backend-pdf[]
-:sectanchors:
-:doctype: book
-:compat-mode:
-:pdf-page-size: Letter
-:source-highlighter: rouge
-:rouge-style: googlecode
-endif::[]
-
-
 :mvc-api-source-dir: ../../../../../api/src/main/java/
-
-include::chapters/license.asciidoc[]
 
 include::chapters/intro.asciidoc[]
 

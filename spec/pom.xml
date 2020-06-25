@@ -121,7 +121,7 @@
                 </executions>
                 <configuration>
                     <sourceDirectory>src/main/asciidoc</sourceDirectory>
-                    <sourceDocumentName>spec.asciidoc</sourceDocumentName>
+                    <sourceDocumentName>mvc-spec.asciidoc</sourceDocumentName>
                     <headerFooter>true</headerFooter>
                 </configuration>
             </plugin>
