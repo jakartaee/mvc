@@ -1,46 +1,36 @@
-= MVC 1.0: Model-View-Controller Specification
-Ivar Grimstad, Christian Kaltepoth
-Version 1.0 Final Release, January 2020
 
-// Settings:
+// Copyright (c) 2020 Contributors to the Eclipse Foundation
+//
+
+= Jakarta MVC Specification
+:authors: Jakarta EE MVC Team, https://projects.eclipse.org/projects/ee4j.mvc
+:email: https://dev.eclipse.org/mailman/listinfo/mvc-dev
+:version-label!:
+:doctype: book
+:license: Eclipse Foundation Specification License v1.0
+:source-highlighter: coderay
+:toc: left
+:toclevels: 3
+:sectnumlevels: 4
+:sectanchors:
 :experimental:
 :reproducible:
 :icons: font
 :listing-caption: Listing
 :sectnums:
-:toc:
-:toclevels: 3
 :autofit-option:
 ifdef::backend-pdf[]
+:pagenums:
+:numbered:
+:title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
 :sectanchors:
 :doctype: book
 :compat-mode:
-:pdf-page-size: Letter
-:source-highlighter: rouge
-:rouge-style: googlecode
 endif::[]
 
+// == License
+:sectnums!:
+include::license-efsl.adoc[]
 
-:mvc-api-source-dir: ../../../../../api/src/main/java/
-
-include::chapters/license.asciidoc[]
-
-include::chapters/intro.asciidoc[]
-
-include::chapters/controllers.asciidoc[]
-
-include::chapters/data-binding.asciidoc[]
-
-include::chapters/security.asciidoc[]
-
-include::chapters/events.asciidoc[]
-
-include::chapters/applications.asciidoc[]
-
-include::chapters/engines.asciidoc[]
-
-include::chapters/i18n.asciidoc[]
-
-include::chapters/annotations.asciidoc[]
-
-include::chapters/refs.asciidoc[]
+:sectnums:
+include::mvc-spec.asciidoc[]
