@@ -1,3 +1,5 @@
+[colophon]
+== License
 [subs="normal"]
 ....
 Specification: {doctitle}
@@ -13,10 +15,12 @@ endif::[]
 
 Release: {revdate}
 ....
+[[Copyright]]
 === Copyright
 
 Copyright (c) 2018,2020 Eclipse Foundation.
 
+[[efsl]]
 === Eclipse Foundation Specification License
 
 By using and/or copying this document, or the Eclipse Foundation
@@ -57,6 +61,7 @@ The notice is:
 document includes material copied from or derived from 
 Jakarta EE Platform Specification, https://jakarta.ee/specifications/platform/9/[]."
 
+[[disclaimers]]
 ==== Disclaimers
 
 THIS DOCUMENT IS PROVIDED &quot;AS IS,&quot; AND THE COPYRIGHT
