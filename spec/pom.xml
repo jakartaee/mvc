@@ -141,10 +141,10 @@
                         <transformationSet>
                             <dir>${project.build.directory}/generated-docs</dir>
                             <outputDir>${project.build.directory}/tck-audit</outputDir>
-                            <includes>spec.xml</includes>
+                            <includes>mvc-spec.xml</includes>
                             <fileMappers>
                                 <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-                                    <pattern>spec.xml</pattern>
+                                    <pattern>mvc-spec.xml</pattern>
                                     <replacement>tck-audit.xml</replacement>
                                 </fileMapper>
                             </fileMappers>
