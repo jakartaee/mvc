@@ -121,7 +121,7 @@
                 </executions>
                 <configuration>
                     <sourceDirectory>src/main/asciidoc</sourceDirectory>
-                    <sourceDocumentName>mvc-spec.asciidoc</sourceDocumentName>
+                    <sourceDocumentName>spec.asciidoc</sourceDocumentName>
                     <headerFooter>true</headerFooter>
                 </configuration>
             </plugin>
@@ -141,10 +141,10 @@
                         <transformationSet>
                             <dir>${project.build.directory}/generated-docs</dir>
                             <outputDir>${project.build.directory}/tck-audit</outputDir>
-                            <includes>mvc-spec.xml</includes>
+                            <includes>spec.xml</includes>
                             <fileMappers>
                                 <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-                                    <pattern>mvc-spec.xml</pattern>
+                                    <pattern>spec.xml</pattern>
                                     <replacement>tck-audit.xml</replacement>
                                 </fileMapper>
                             </fileMappers>

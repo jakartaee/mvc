@@ -1,36 +1,21 @@
+:mvc-api-source-dir: ../../../../../api/src/main/java/
 
-// Copyright (c) 2020 Contributors to the Eclipse Foundation
-//
+include::chapters/intro.asciidoc[]
 
-= Jakarta MVC Specification
-:authors: Jakarta EE MVC Team, https://projects.eclipse.org/projects/ee4j.mvc
-:email: https://dev.eclipse.org/mailman/listinfo/mvc-dev
-:version-label!:
-:doctype: book
-:license: Eclipse Foundation Specification License v1.0
-:source-highlighter: coderay
-:toc: left
-:toclevels: 3
-:sectnumlevels: 4
-:sectanchors:
-:experimental:
-:reproducible:
-:icons: font
-:listing-caption: Listing
-:sectnums:
-:autofit-option:
-ifdef::backend-pdf[]
-:pagenums:
-:numbered:
-:title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
-:sectanchors:
-:doctype: book
-:compat-mode:
-endif::[]
+include::chapters/controllers.asciidoc[]
 
-// == License
-:sectnums!:
-include::license-efsl.adoc[]
+include::chapters/data-binding.asciidoc[]
 
-:sectnums:
-include::spec.asciidoc[]
+include::chapters/security.asciidoc[]
+
+include::chapters/events.asciidoc[]
+
+include::chapters/applications.asciidoc[]
+
+include::chapters/engines.asciidoc[]
+
+include::chapters/i18n.asciidoc[]
+
+include::chapters/annotations.asciidoc[]
+
+include::chapters/refs.asciidoc[]
