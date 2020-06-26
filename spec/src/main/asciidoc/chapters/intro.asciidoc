@@ -12,7 +12,7 @@ typically handled by framework components with little or no interaction from app
 the majority of the controller logic is provided by the framework instead of the application.
 
 The API defined by this specification falls into the action-based category and is, therefore, not intended to be a replacement for
-component-based frameworks such as JavaServer Faces (JSF) [<<jsf22,1>>], but simply a different approach to building Web applications on the Java EE platform.
+component-based frameworks such as Jakarta Server Faces [<<jsf22,1>>], but simply a different approach to building Web applications on the Jakarta EE platform.
 
 [[goals]]
 Goals
@@ -21,10 +21,10 @@ Goals
 The following are goals of the API:
 
 [horizontal]
-Goal 1:: Leverage existing Java EE technologies like CDI [<<cdi11,2>>] and Bean Validation [<<bv11,3>>].
+Goal 1:: Leverage existing Jakarta EE technologies like Jakarta Contexs and Dependency Injecttion [<<cdi11,2>>] and Jakarta Bean Validation [<<bv11,3>>].
 Goal 2:: Define a solid core to build MVC applications without necessarily supporting all the features in its first version.
-Goal 3:: Build on top of JAX-RS for the purpose of re-using its matching and binding layers.
-Goal 4:: Provide built-in support for JSPs and Facelets view languages.
+Goal 3:: Build on top of Jakarta RESTful Web Services for the purpose of re-using its matching and binding layers.
+Goal 4:: Provide built-in support for Jakarta Server Pages and Facelets view languages.
 
 [[non_goals]]
 Non-Goals
@@ -34,13 +34,13 @@ The following are non-goals of the API:
 
 [horizontal]
 Non-Goal 1:: Define a new view (template) language and processor.
-Non-Goal 2:: Support standalone implementations of MVC running outside of Java EE.
-Non-Goal 3:: Support REST services not based on JAX-RS.
-Non-Goal 4:: Provide built-in support for view languages that are not part of Java EE.
+Non-Goal 2:: Support standalone implementations of MVC running outside of Jakarta EE.
+Non-Goal 3:: Support REST services not based on Jakarta RESTful Web Services.
+Non-Goal 4:: Provide built-in support for view languages that are not part of Jakarta EE.
 
-It is worth noting that, even though a standalone implementation of MVC that runs outside of Java EE is a non-goal, 
+It is worth noting that, even though a standalone implementation of MVC that runs outside of Jakarta EE is a non-goal, 
 this specification shall not intentionally prevent implementations to run in other environments, 
-provided that those environments include support for all the EE technologies required by MVC.
+provided that those environments include support for all the Jakarta EE technologies required by MVC.
 
 [[additional_information]]
 Additional Information
@@ -48,7 +48,7 @@ Additional Information
 
 The issue tracking system for this specification can be found at:
 
-https://github.com/mvc-spec/mvc-spec/issues
+https://github.com/eclipse-ee4j/mvc-api/issues
 
 The corresponding Javadocs can be found online at:
 
@@ -58,15 +58,15 @@ The reference implementation can be obtained from:
 
 https://www.mvc-spec.org/krazo/
 
-The expert group seeks feedback from the community on any aspect of this specification, please send comments to:
+The project team seeks feedback from the community on any aspect of this specification, please send comments to:
 
-jsr371-users@googlegroups.com
+https://accounts.eclipse.org/mailing-list/mvc-dev
 
 [[terminology]]
 Terminology
 ~~~~~~~~~~~
 
-Most of the terminology used in this specification is borrowed from other specifications such as JAX-RS and CDI. We use the terms _per-request_
+Most of the terminology used in this specification is borrowed from other specifications such as Jakarta RESTful Web Services and Jakarta Contexts and Dependency Injection. We use the terms _per-request_
 and _request-scoped_ as well as _per-application_ and _application-scoped_ interchangeably.
 
 [[conventions]]
@@ -98,9 +98,21 @@ Non-normative notes are formatted as shown below.
 [NOTE]
 This is a note.
 
+[[acks10]]
+Acknowledgements for version 1.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To be filled in...
+
+
+[[acks10]]
+Acknowledgements for version 1.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 [[spec_leads]]
 Specification Leads
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
+
 
 The following table lists the current and former specification leads:
 
@@ -114,7 +126,7 @@ The following table lists the current and former specification leads:
 
 [[expert_group]]
 Expert Group Members
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 This specification is being developed as part of https://jcp.org/en/jsr/detail?id=371[JSR 371] under the Java Community Process. The following are the present expert group members:
 
@@ -146,7 +158,7 @@ The following are former members of the expert group:
 
 [[contributors]]
 Contributors
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 The following are the contributors of the specification:
 
@@ -157,10 +169,6 @@ The following are the contributors of the specification:
 |Andreas Badelt
 |
 |===
-
-[[acks]]
-Acknowledgements
-~~~~~~~~~~~~~~~~
 
 During the course of this JSR we received many excellent suggestions. Special thanks to Marek Potociar, Dhiru Pandey and Ed Burns, all from Oracle. 
 In addition, to everyone in the user’s alias that followed the expert discussions and provided feedback, including Peter Pilgrim, Ivar Grimstad, Jozef Hartinger, Florian Hirsch, Frans Tamura, Rahman Usta, Romain Manni-Bucau, Alberto Souza, among many others.
