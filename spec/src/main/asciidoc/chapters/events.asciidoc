@@ -2,8 +2,8 @@
 Events
 ------
 
-This chapter introduces a mechanism by which MVC applications can be informed of important events that occur while processing a request.
-This mechanism is based on CDI events that can be fired by implementations and observed by applications.
+This chapter introduces a mechanism by which Jakarta MVC applications can be informed of important events that occur while processing a request.
+This mechanism is based on Jakarta Contexts and Dependency Injection events that can be fired by implementations and observed by applications.
 
 [[observers]]
 Observers
@@ -45,8 +45,8 @@ public class EventObserver {
 }
 ----
 
-Observer methods in CDI are defined using the `@Observes` annotation on a parameter position.
-The class `EventObserver` is a CDI bean in application scope whose methods `onBeforeController` and `onAfterController` are called before and after a controller is called.
+Observer methods in Jakarta Contexts and Dependency Injection are defined using the `@Observes` annotation on a parameter position.
+The class `EventObserver` is a CJakarta Contexts and Dependency InjectionDI bean in application scope whose methods `onBeforeController` and `onAfterController` are called before and after a controller is called.
 
 Each event includes additional information that is specific to the event;
 for example, the events shown in the example above allow applications to get information about the request URI and the resource (controller) selected.
@@ -104,7 +104,7 @@ public class EventObserver {
 
 For more information about the interaction between views and models, the reader is referred to the <<models>> section.
 
-[tck-testable tck-id-redirect-event]#The last event supported by MVC is `ControllerRedirectEvent`, which is fired just before the MVC implementation returns a redirect status code#.
+[tck-testable tck-id-redirect-event]#The last event supported by Jakarta MVC is `ControllerRedirectEvent`, which is fired just before the Jakarta MVC implementation returns a redirect status code#.
 [tck-testable tck-id-redirect-after-controller-event]#Please note that this event MUST be fired after `AfterControllerEvent`#.
 
 [source,java,numbered]
@@ -112,10 +112,10 @@ For more information about the interaction between views and models, the reader 
 include::{mvc-api-source-dir}javax/mvc/event/ControllerRedirectEvent.java[lines=23..-1]
 ----
 
-CDI events fired by implementations are _synchronous_, so it is recommended that applications carry out only simple tasks in their observer methods,
+Jakarta Contexts and Dependency Injection events fired by implementations are _synchronous_, so it is recommended that applications carry out only simple tasks in their observer methods,
 avoiding long-running computations as well as blocking calls.
 For a complete list of events, the reader is referred to the Javadoc for the `javax.mvc.event` package.
 
-Event reporting requires the MVC implementations to create event objects before firing.
+Event reporting requires the Jakarta MVC implementations to create event objects before firing.
 In high-throughput systems without any observers the number of unnecessary objects created may not be insignificant.
 For this reason, it is RECOMMENDED for implementations to consider smart firing strategies when no observers are present.
