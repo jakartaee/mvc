@@ -19,17 +19,19 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>javax.mvc</groupId>
-    <artifactId>javax.mvc-api</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <groupId>jakarta.mvc</groupId>
+    <artifactId>jakarta.mvc-api</artifactId>
+    <version>1.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <name>MVC ${project.version} API</name>
-    <description>MVC ${project.version} API</description>
+    <name>Jakarta MVC ${project.version} API</name>
+    <description>Jakarta MVC ${project.version} API</description>
     <url>https://www.mvc-spec.org/</url>
+
     <organization>
-        <name>Ivar Grimstad</name>
-        <url>https://www.mvc-spec.org/</url>
+        <name>Eclipse Foundation</name>
+        <url>https://www.eclipse.org/org/foundation/</url>
     </organization>
+
     <licenses>
         <license>
             <name>EPL-2.0</name>
@@ -42,6 +44,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
     <developers>
         <developer>
             <id>ivargrimstad</id>
@@ -56,20 +59,19 @@
             <timezone>CET</timezone>
         </developer>
     </developers>
+
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/mvc-spec/mvc-spec/issues</url>
+        <url>https://github.com/eclipse-ee4j/mvc-api/issues</url>
     </issueManagement>
+
     <mailingLists>
         <mailingList>
-            <name>JSR371 Expert Group List</name>
-            <archive>jsr371-experts@googlegroups.com</archive>
-        </mailingList>
-        <mailingList>
-            <name>MVC Specification Users List</name>
-            <archive>jsr371-users@googlegroups.com</archive>
+            <name>Jakarta MVC Devloper Mailing List</name>
+            <archive>https://accounts.eclipse.org/mailing-list/mvc-dev</archive>
         </mailingList>
     </mailingLists>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -80,9 +82,10 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
     <properties>
         <api_package>javax.mvc</api_package>
-        <spec_version>1.0</spec_version>
+        <spec_version>1.1</spec_version>
         <spec_impl_version>${project.version}</spec_impl_version>
         <packages.export>javax.mvc.*</packages.export>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -95,12 +98,13 @@
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
-                <version>1.2</version>
+                <version>1.5</version>
                 <configuration>
+                    <specMode>jakarta</specMode>
                     <spec>
                         <nonFinal>false</nonFinal>
                         <jarType>api</jarType>
-                        <specVersion>1.0</specVersion>
+                        <specVersion>1.1</specVersion>
                         <newSpecVersion>${spec_version}</newSpecVersion>
                         <specBuild>01</specBuild>
                         <specImplVersion>${spec_impl_version}</specImplVersion>
@@ -142,8 +146,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <doctitle>MVC ${project.version} API</doctitle>
-                    <windowtitle>MVC ${project.version} API</windowtitle>
+                    <doctitle>Jakarta MVC ${project.version} API</doctitle>
+                    <windowtitle>Jakarta MVC ${project.version} API</windowtitle>
                     <source>8</source>
                 </configuration>
             </plugin>
@@ -249,15 +253,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>2.0</version>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>2.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.0.Final</version>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>2.0.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -389,8 +393,8 @@
         </plugins>
     </reporting>
     <scm>
-        <connection>scm:git:https://github.com/mvc-spec/mvc-spec.git</connection>
-        <developerConnection>scm:git:https://github.com/mvc-spec/mvc-spec.git</developerConnection>
-        <url>https://github.com/mvc-spec/mvc-spec</url>
+        <connection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</connection>
+        <developerConnection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/mvc-api</url>
     </scm>
 </project>
