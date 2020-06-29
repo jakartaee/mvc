@@ -2,8 +2,8 @@
 View Engines
 ------------
 
-This chapter introduces the notion of a view engine as the mechanism by which views are processed in MVC. 
-The set of available view engines is extensible via CDI, enabling applications as well as other frameworks to provide support for additional view languages.
+This chapter introduces the notion of a view engine as the mechanism by which views are processed in Jakarta MVC. 
+The set of available view engines is extensible via Jakarta Contexts and Dependency Injection, enabling applications as well as other frameworks to provide support for additional view languages.
 
 [[view_engines_introduction]]
 Introduction
@@ -12,11 +12,11 @@ Introduction
 A _view engine_ is responsible for processing views. In this context, processing entails (i) locating and loading a view (ii) preparing any
 required models and (iii) rendering the view and writing the result back to the client.
 
-[tck-testable tck-id-jsp-facelets]#Implementations MUST provide built-in support for JSPs and Facelets view engines#. 
-Additional engines may be supported via an extension mechanism based on CDI. 
-[tck-testable tck-id-cdi-discovery]#Namely, any CDI bean that implements the `javax.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
+[tck-testable tck-id-jsp-facelets]#Implementations MUST provide built-in support for Jakarta Server Pages and Facelets view engines#. 
+Additional engines may be supported via an extension mechanism based on Jakarta Contexts and Dependency Injection. 
+[tck-testable tck-id-cdi-discovery]#Namely, any Jakarta Contexts and Dependency Injection bean that implements the `javax.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
 
-This is the interface that must be implemented by all MVC view engines:
+This is the interface that must be implemented by all Jakarta MVC view engines:
 
 [source,java,numbered]
 ----
@@ -29,7 +29,7 @@ Selection Algorithm
 
 [tck-testable tck-id-selection-algo]#Implementations should perform the following steps while trying to find a suitable view engine for a view#.
 
-. Lookup all instances of `javax.mvc.engine.ViewEngine` available via CDI.
+. Lookup all instances of `javax.mvc.engine.ViewEngine` available via Jakarta Contexts and Dependency Injection.
 . Call `supports` on every view engine found in the previous step, discarding those that return `false`.
 . If the resulting set is empty, return `null`.
 . Otherwise, sort the resulting set in descending order of priority using the integer value from the `@Priority` annotation decorating the view engine class or the default value `ViewEngine.PRIORITY_APPLICATION` if the annotation is not present.
@@ -53,7 +53,7 @@ It is recommended to use relative paths and a location under `WEB-INF` to preven
 FacesServlet
 ~~~~~~~~~~~~
 
-Because Facelets support is not enabled by default, MVC applications that use Facelets are required to package a `web.xml` deployment descriptor with the following entry mapping the extension `*.xhtml` as shown next:
+Because Facelets support is not enabled by default, Jakarta MVC applications that use Facelets are required to package a `web.xml` deployment descriptor with the following entry mapping the extension `*.xhtml` as shown next:
 
 [source,xml,numbered]
 ----
@@ -70,5 +70,5 @@ Because Facelets support is not enabled by default, MVC applications that use Fa
 
 Alternatively to a `web.xml` deployment descriptor an empty `faces-config.xml` file can be placed in the `WEB-INF` folder to enable Facelets support.
 
-It is worth noting that if you opt to use Facelets as a view technology for your MVC application, regular JSF post-backs will not be processed by the MVC runtime. 
-The usage of `<h:form />` and depending form components like `<h:inputText />` is not recommended as they would be the entry point to a real JSF application.
+It is worth noting that if you opt to use Facelets as a view technology for your Jakarta MVC application, regular Jakarta Server Faces post-backs will not be processed by the Jakarta MVC runtime. 
+The usage of `<h:form />` and depending form components like `<h:inputText />` is not recommended as they would be the entry point to a real Jakarta Server Faces application.
