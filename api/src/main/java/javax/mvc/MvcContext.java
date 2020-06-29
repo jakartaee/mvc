@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,14 +27,15 @@ import java.util.Map;
 
 /**
  * <p>This class provides contextual information such as context and application
- * paths as well as access to the JAX-RS application configuration object.
+ * paths as well as access to the Jakarta RESTful Web Services application configuration object.
  * In addition, it provides access to the security-related beans {@link
  * javax.mvc.security.Csrf} and {@link javax.mvc.security.Encoders}.</p>
  *
  * <p>Implementations of this class are injectable, must be
- * {@link javax.enterprise.context.RequestScoped} and accessible from EL using
+ * {@link javax.enterprise.context.RequestScoped} and accessible from Jakarta Expression Language using
  * the name {@code mvc}. For example, the CSRF token name and value can be
- * accessed in EL using the expressions {@code mvc.csrf.name} and {@code
+ * accessed in Jakarta Expression Language using the expressions {@code mvc.csrf.name} 
+ * and {@code
  * mvc.csrf.token}, respectively.</p>
  *
  * @author Santiago Pericas-Geertsen
@@ -43,8 +45,8 @@ import java.util.Map;
 public interface MvcContext {
 
     /**
-     * Get the JAX-RS application configuration object. All application-defined properties
-     * are accessible via this object.
+     * Get the Jakarta RESTful Web Services application configuration object. 
+     * All application-defined properties are accessible via this object.
      *
      * @return the configuration object.
      */
@@ -93,7 +95,7 @@ public interface MvcContext {
      *
      * <p>This method assumes that there is no parameter in the URI-template.</p>
      *
-     * <p>For example in JSP:</p>
+     * <p>For example in Jakarta Server Pages:</p>
      * <pre><code>${mvc.uri('MyController#myMethod')}</code></pre>
      *
      * @param identifier for the controller method.
@@ -118,7 +120,7 @@ public interface MvcContext {
      * Please note that the map must contain values for all path parameters
      * as they are required for building the URI. All other parameters are optional.</p>
      * 
-     * <p>For example in JSP:</p>
+     * <p>For example in Jakarta Server Pages:</p>
      * <pre><code>${mvc.uri('MyController#myMethod', {'foo': 'bar', 'id': 42})}</code></pre>
      *
      * @param identifier for the controller method.

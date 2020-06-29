@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2014-2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +32,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * is set to {@link javax.mvc.security.Csrf.CsrfOptions#EXPLICIT}. If the
  * property {@link javax.mvc.security.Csrf#CSRF_PROTECTION} is set to
  * {@link javax.mvc.security.Csrf.CsrfOptions#IMPLICIT}, then the use of this
- * annotation is redundant. MVC implementations are only REQUIRED to enforce CSRF
+ * annotation is redundant. Jakarta MVC implementations are only REQUIRED to enforce CSRF
  * for POST controllers that consume payloads of type
  * {@link javax.ws.rs.core.MediaType#APPLICATION_FORM_URLENCODED_TYPE}, but
  * other HTTP methods and payloads may be optionally supported by the

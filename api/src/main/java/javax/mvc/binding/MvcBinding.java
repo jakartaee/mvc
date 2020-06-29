@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,20 +23,20 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to enable MVC-specific binding rules for a JAX-RS parameter binding. It can
- * be placed on fields and method parameters together with JAX-RS binding annotations such as
+ * This annotation is used to enable Jakarta MVC-specific binding rules for a Jakarta RESTful Web Services parameter binding. It can
+ * be placed on fields and method parameters together with Jakarta RESTful Web Services binding annotations such as
  * {@link javax.ws.rs.FormParam}, {@link javax.ws.rs.QueryParam}, etc.
  * <p>
- * MVC parameter binding differs from traditional JAX-RS parameter binding in the following aspects:
+ * MVC parameter binding differs from traditional Jakarta RESTful Web Services parameter binding in the following aspects:
  * <ul>
- * <li>In JAX-RS binding and validation errors result in an exception being thrown which can
+ * <li>In Jakarta RESTful Web Services binding and validation errors result in an exception being thrown which can
  * only be handled by a corresponding exception mapper. This usually doesn't make sense for web
  * applications, because errors must be processed by the controller, so they can be
- * displayed on the resulting HTML page. In case of MVC bindings such errors don't prevent the controller
+ * displayed on the resulting HTML page. In case of Jakarta MVC bindings such errors don't prevent the controller
  * from being invoked and are instead made available via the injectable {@link BindingResult} class.</li>
- * <li>JAX-RS parameter type conversion isn't locale-aware. The standard JAX-RS converters
+ * <li>Jakarta RESTful Web Services parameter type conversion isn't locale-aware. The standard Jakarta RESTful Web Services converters
  * always use a fixed locale to parse numbers and dates. In MVC applications users typically
- * enter data into forms in their native locale. Therefore, MVC bindings perform data type
+ * enter data into forms in their native locale. Therefore, Jakarta MVC bindings perform data type
  * conversion by respecting the request locale resolved via {@link javax.mvc.locale.LocaleResolver}.</li>
  * </ul>
  *

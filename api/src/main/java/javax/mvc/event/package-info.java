@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,7 +16,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 /**
- * CDI events fired by implementations and observable by applications.
+ * Jakarta Contexts and Dependency Injection events fired by implementations and observable by applications.
  *
  * @version 1.0
  */
