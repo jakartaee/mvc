@@ -98,7 +98,7 @@ Non-normative notes are formatted as shown below.
 [NOTE]
 This is a note.
 
-[[acks10]]
+[[acks11]]
 Acknowledgements for version 1.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
