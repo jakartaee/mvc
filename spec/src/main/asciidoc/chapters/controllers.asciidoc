@@ -9,7 +9,7 @@ This chapter introduces the three components that comprise the
 Controllers
 ~~~~~~~~~~~
 
-[tck-testable tck-id-ctrl-method]#Aa _Jakarta MVC controller_ is a Jakarta RESTful Web Services [<<jaxrs20,5>>] resource method decorated by `@Controller`#.
+[tck-testable tck-id-ctrl-method]#A _Jakarta MVC controller_ is a Jakarta RESTful Web Services [<<jaxrs20,5>>] resource method decorated by `@Controller`#.
 [tck-testable tck-id-ctrl-class]#If this annotation is applied to a class, then all resource methods in it are regarded as controllers#.
 [tck-testable tck-id-ctrl-hybrid]#Using the `@Controller` annotation on a subset of methods defines a hybrid class in which certain methods are controllers and others are traditional Jakarta RESTful Web Services resource methods.#
 
@@ -177,7 +177,7 @@ public class MyController {
 
     @GET
     public String get() {
-        return "mybean.jsp"; // mybean.value accessed in Jakarta Server Pages
+        return "mybean.jsp"; // mybean.value accessed in Jakarta Server Page
     }
 }
 ----
@@ -286,7 +286,7 @@ Here is the Jakarta Server Pages page for the hello-world example:
 </html>
 ----
 
-[tck-testable tck-id-jsp-el]#In a Jakarta Server Pages, model properties are accessible via EL# [<<el30,6>>]. In the example above, the property `message` is read from the `greeting` model
+[tck-testable tck-id-jsp-el]#In Jakarta Server Pages, model properties are accessible via EL# [<<el30,6>>]. In the example above, the property `message` is read from the `greeting` model
 whose name was either specified in a `@Named` annotation or used as a key in the `Models` map, depending on which controller from the <<models>> section triggered this view's processing.
 
 Here is the corresponding example using Facelets instead of Jakarta Server Pages:
@@ -304,14 +304,14 @@ Here is the corresponding example using Facelets instead of Jakarta Server Pages
 </html>
 ----
 
-[[MVC_uri]]
+[[mvc_uri]]
 Building URIs in a View
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 A typical application requires to build URIs for the view, which often refer to controller methods within the same application.
 Typical examples for such URIs include HTML links and form actions.
 As building URIs manually is difficult and duplicating path patterns between the controller class and the view is error prone,
-Jakarta MV provides a simple way to generate URIs using the `MvcContext` class.
+Jakarta MVC provides a simple way to generate URIs using the `MvcContext` class.
 
 See the following controller as an example:
 
@@ -350,7 +350,7 @@ ${mvc.uri('BookController#detail', { 'isbn': 1234 })}
 [tck-testable tck-id-class-method-name]#The controller method is referenced using the simple name of the controller class and the corresponding method name separated by `pass:[#]`#.
 [tck-testable tck-id-param-map]#If the URI contains path, query or matrix parameters, concrete values can be supplied using a map#.
 Please note that the keys of this map must match the parameter name used in the `@PathParam`, `@QueryParam` or `@MatrixParam` annotation.
-[tck-testable tck-id-uri-encoding]#Jakarta MV implementations MUST apply the corresponding URI encoding rules depending on whether the value is used in a query, path or matrix parameter#.
+[tck-testable tck-id-uri-encoding]#Jakarta MVC implementations MUST apply the corresponding URI encoding rules depending on whether the value is used in a query, path or matrix parameter#.
 
 The syntax used above to reference the controller method works well in most cases.
 However, because of the simple nature of this reference style, it will require controller class names to be unique.
