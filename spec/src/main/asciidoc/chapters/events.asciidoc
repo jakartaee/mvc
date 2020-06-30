@@ -46,7 +46,7 @@ public class EventObserver {
 ----
 
 Observer methods in Jakarta Contexts and Dependency Injection are defined using the `@Observes` annotation on a parameter position.
-The class `EventObserver` is a CJakarta Contexts and Dependency Injection bean in application scope whose methods `onBeforeController` and `onAfterController` are called before and after a controller is called.
+The class `EventObserver` is a Jakarta Contexts and Dependency Injection bean in application scope whose methods `onBeforeController` and `onAfterController` are called before and after a controller is called.
 
 Each event includes additional information that is specific to the event;
 for example, the events shown in the example above allow applications to get information about the request URI and the resource (controller) selected.
