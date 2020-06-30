@@ -12,7 +12,7 @@ Summary of Annotations
 
 |`Controller`
 |Type or method
-|Defines a resource method as an MVC controller. If
+|Defines a resource method as a Jakarta MVC controller. If
 specified at the type level, it defines all methods in a class
 as controllers.
 
