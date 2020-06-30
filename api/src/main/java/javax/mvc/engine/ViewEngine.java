@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +19,7 @@ package javax.mvc.engine;
 
 /**
  * <p>View engines are responsible for processing views and are discovered
- * using CDI. Implementations must look up all instances of this interface,
+ * using Jakarta Contexts and Dependency Injection. Implementations must look up all instances of this interface,
  * and process a view as follows:
  * <ol>
  *     <li>Gather the set of candidate view engines by calling {@link #supports(String)}
@@ -32,8 +33,8 @@ package javax.mvc.engine;
  *     <li>Call method {@link #processView(ViewEngineContext)} to process view.</li>
  *     <li>Fire a {@link javax.mvc.event.AfterProcessViewEvent} event.</li>
  * </ol>
- * <p>The default view engines for JSPs and Facelets use file extensions to determine
- * support. Namely, the default JSP view engine supports views with extensions <code>jsp</code>
+ * <p>The default view engines for Jakarta Server Pages and Facelets use file extensions to determine
+ * support. Namely, the default Jakarta Server Pages view engine supports views with extensions <code>jsp</code>
  * and <code>jspx</code>, and the one for Facelets supports views with extension
  * <code>xhtml</code>.</p>
  *
@@ -87,7 +88,7 @@ public interface ViewEngine {
      * a view involves <i>merging</i> the model and template data and writing
      * the result to an output stream.</p>
      *
-     * <p>Following the Java EE threading model, the underlying view engine implementation
+     * <p>Following the Jakarta EE threading model, the underlying view engine implementation
      * must support this method being called by different threads. Any resources allocated
      * during view processing must be released before the method returns.</p>
      *

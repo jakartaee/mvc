@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +18,7 @@
 package javax.mvc.event;
 
 /**
- * <p>Base type for all MVC events. Every MVC event type must extend this interface.</p>
+ * <p>Base type for all Jakarta MVC events. Every Jakarta MVC event type must extend this interface.</p>
  *
  * @author Santiago Pericas-Geertsen
  * @since 1.0

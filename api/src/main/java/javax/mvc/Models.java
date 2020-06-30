@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +24,7 @@ import java.util.Map;
  * to process a view. Instances implementing this interface must be injectable using
  * {@link javax.inject.Inject} and are {@link javax.enterprise.context.RequestScoped}.
  *
- * <p>Note that certain view engines, such as engines for JSPs and Facelets, support
+ * <p>Note that certain view engines, such as engines for Jakarta Server Pages and Facelets, support
  * model binding via {@link javax.inject.Named} in which case the use of Models is
  * optional.
  *

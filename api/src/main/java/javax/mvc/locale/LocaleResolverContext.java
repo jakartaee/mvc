@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,9 +51,9 @@ public interface LocaleResolverContext {
     List<Locale> getAcceptableLanguages();
 
     /**
-     * Get the JAX-RS {@link Request} instance.
+     * Get the Jakarta RESTful Web Services {@link Request} instance.
      *
-     * @return the JAX-RS {@link Request} instance.
+     * @return the Jakarta RESTful Web Services {@link Request} instance.
      * @see Request
      */
     Request getRequest();

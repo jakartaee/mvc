@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2014-2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2016-2018 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +26,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation that defines a new CDI-based scope supported by the MVC API.
+ * An annotation that defines a new Jakarta Contexts and Dependency Injection-based 
+ * scope supported by the Jakarta MVC API.
  * Beans in this scope are automatically created and destroyed by correlating
  * a redirect and the request that follows. The exact mechanism by which requests
  * are correlated is implementation dependent, but popular techniques include URL

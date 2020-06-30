@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2016-2017 JSR 371 expert group and contributors
+ * Copyright (c) 2020 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,9 +21,9 @@ import java.util.Locale;
 
 /**
  * <p>Locale resolvers are used to determine the locale of the current request and are discovered
- * using CDI.</p>
+ * using Jakarta Contexts and Dependency Injection.</p>
  *
- * <p>The MVC implementation is required to resolve the locale for each request following this
+ * <p>The Jakarta MVC implementation is required to resolve the locale for each request following this
  * algorithm:</p>
  *
  * <ol>
