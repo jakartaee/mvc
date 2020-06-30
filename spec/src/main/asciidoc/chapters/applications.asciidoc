@@ -2,24 +2,24 @@
 Applications
 ------------
 
-This chapter introduces the notion of an MVC application and explains how it relates to a JAX-RS application.
+This chapter introduces the notion of a Jakarta MVC application and explains how it relates to a Jakarta RESTful Web Services application.
 
 [[mvc_applications]]
 MVC Applications
 ~~~~~~~~~~~~~~~~
 
-An MVC application consists of one or more JAX-RS resources that are annotated with `@Controller` and, just like JAX-RS applications, zero or more providers.
-If no resources are annotated with `@Controller`, then the resulting application is a JAX-RS application instead. 
-In general, everything that applies to a JAX-RS application also applies to an MVC application. 
-Some MVC applications may be _hybrid_ and include a mix of MVC controllers and JAX-RS resource methods.
+A Jakarta MVC application consists of one or more Jakarta RESTful Web Services resources that are annotated with `@Controller` and, just like Jakarta RESTful Web Services applications, zero or more providers.
+If no resources are annotated with `@Controller`, then the resulting application is a Jakarta RESTful Web Services application instead. 
+In general, everything that applies to a Jakarta RESTful Web Services application also applies to a Jakarta MVC application. 
+Some Jakarta MVC applications may be _hybrid_ and include a mix of Jakarta MVC controllers and Jakarta RESTful Web Services resource methods.
 
-[tck-testable tck-id-application-class]#The controllers and providers that make up an application are configured via an application-supplied subclass of `Application` from JAX-RS#.
-An implementation MAY provide alternate mechanisms for locating controllers, but as in JAX-RS, the use of an `Application` subclass is the only way to guarantee portability.
+[tck-testable tck-id-application-class]#The controllers and providers that make up an application are configured via an application-supplied subclass of `Application` from Jakarta RESTful Web Services#.
+An implementation MAY provide alternate mechanisms for locating controllers, but as in Jakarta RESTful Web Services, the use of an `Application` subclass is the only way to guarantee portability.
 
-[tck-testable tck-id-url-space]#The path in the application's URL space in which MVC controllers live must be specified either using the `@ApplicationPath` annotation on the application subclass or in the web.xml as part of the `url-pattern` element#. 
-MVC applications SHOULD use a non-empty path or pattern: i.e., _"/"_ or _"/*"_ should be avoided whenever possible. 
-The reason for this is that MVC implementations often forward requests to the Servlet container, 
-and the use of the aforementioned values may result in the unwanted processing of the forwarded request by the JAX-RS servlet once again.
+[tck-testable tck-id-url-space]#The path in the application's URL space in which Jakarta MVC controllers live must be specified either using the `@ApplicationPath` annotation on the application subclass or in the web.xml as part of the `url-pattern` element#. 
+Jakarta MVC applications SHOULD use a non-empty path or pattern: i.e., _"/"_ or _"/*"_ should be avoided whenever possible. 
+The reason for this is that Jakarta MVC implementations often forward requests to the Servlet container, 
+and the use of the aforementioned values may result in the unwanted processing of the forwarded request by the Jakarta RESTful Web Services servlet once again.
 
 [[mvc_context]]
 MVC Context
@@ -42,29 +42,29 @@ For more information on security see the Chapter on <<security,Security>>; for m
 Providers in MVC
 ~~~~~~~~~~~~~~~~
 
-Implementations are free to use their own providers in order to modify the standard JAX-RS pipeline for the purpose of implementing the MVC semantics.
+Implementations are free to use their own providers in order to modify the standard Jakarta RESTful Web Services pipeline for the purpose of implementing the MVC semantics.
 Whenever mixing implementation and application providers, care should be taken to ensure the correct execution order using priorities.
 
 [[annotation_inheritance]]
 Annotation Inheritance
 ~~~~~~~~~~~~~~~~~~~~~~
 
-MVC applications MUST follow the annotation inheritance rules defined by JAX-RS. 
-Namely, MVC annotations may be used on methods of a super-class or an implemented interface.
-[tck-testable tck-id-inheritance]#Such annotations are inherited by a corresponding sub-class or implementation class method provided that the method does not have any MVC or JAX-RS annotations of its own#: 
-i.e., if a subclass or implementation method has any MVC or JAX-RS annotations then all of the annotations on the superclass or interface method are ignored.
+Jakarta MVC applications MUST follow the annotation inheritance rules defined by Jakarta RESTful Web Services. 
+Namely, Jakarta MVC annotations may be used on methods of a super-class or an implemented interface.
+[tck-testable tck-id-inheritance]#Such annotations are inherited by a corresponding sub-class or implementation class method provided that the method does not have any Jakarta MVC or Jakarta RESTful Web Services annotations of its own#: 
+i.e., if a subclass or implementation method has any Jakarta MVC or Jakarta RESTful Web Services annotations then all of the annotations on the superclass or interface method are ignored.
 
 [tck-testable tck-id-class-vs-iface]#Annotations on a super-class take precedence over those on an implemented interface#. 
 The precedence over conflicting annotations defined in multiple implemented interfaces is implementation dependent. 
-Note that, in accordance to the JAX-RS rules, inheritance of class or interface annotations is not supported.
+Note that, in accordance to the Jakarta RESTful Web Services rules, inheritance of class or interface annotations is not supported.
 
 [[configuration_in_mvc]]
 Configuration in MVC
 ~~~~~~~~~~~~~~~~~~~~
 
-Implementations MUST support configuration via the native JAX-RS configuration mechanism but MAY support other configuration sources.
+Implementations MUST support configuration via the native Jakarta RESTful Web Services configuration mechanism but MAY support other configuration sources.
 
-There are concrete configurations, that all MVC the implementations are `REQUIRED` the support such as: 
+There are concrete configurations, that all Jakarta MVC the implementations are `REQUIRED` the support such as: 
 
 - `ViewEngine.VIEW_FOLDER` 
 - `Csrf.CSRF_PROTECTION`
