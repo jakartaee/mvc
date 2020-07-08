@@ -24,6 +24,13 @@
     <packaging>pom</packaging>
     <name>Jakarta MVC ${project.version} Spec</name>
     <url>https://www.mvc-spec.org/</url>
+ 
+     <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.6</version>
+        <relativePath/>
+    </parent>
 
     <organization>
         <name>Eclipse Foundation</name>

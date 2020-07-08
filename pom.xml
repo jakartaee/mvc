@@ -25,10 +25,10 @@
     <name>Jakarta MVC ${project.version} Parent</name>
     <url>https://www.mvc-spec.org/</url>
 
-   <parent>
+    <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
     </parent>
 
     <organization>
