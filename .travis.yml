@@ -17,14 +17,14 @@ deploy:
     script: mvn -s .travis/deploy-settings.xml -DperformRelease -DskipTests -Dgpg.skip=true deploy
     skip_cleanup: true
     on:
-      repo: mvc-spec/mvc-spec
+      repo: eclipse-ee4j/mvc-spec
       branch: master
       jdk: openjdk8
   - provider: script
     script: .travis/deploy-spec-html.sh
     skip_cleanup: true
     on:
-      repo: mvc-spec/mvc-spec
+      repo: eclipse-ee4j/mvc-spec
       branch: master
       jdk: openjdk8
 
