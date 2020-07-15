@@ -49,8 +49,8 @@
     </mailingLists>
 
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</connection>
-        <developerConnection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com:eclipse-ee4j/mvc-api.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:eclipse-ee4j/mvc-api.git</developerConnection>
     </scm>
 
     <properties>
