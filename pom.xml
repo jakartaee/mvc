@@ -50,7 +50,7 @@
 
     <scm>
         <connection>scm:git:ssh://git@github.com/eclipse-ee4j/mvc-api.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:eclipse-ee4j/mvc-api.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/mvc-api.git</developerConnection>
     </scm>
 
     <properties>
