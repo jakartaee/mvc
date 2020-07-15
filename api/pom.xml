@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.mvc</groupId>
     <artifactId>jakarta.mvc-api</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1-RC1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>Jakarta MVC ${project.version} API</name>
     <description>Jakarta MVC ${project.version} API</description>
@@ -98,9 +98,9 @@
                 <configuration>
                     <specMode>jakarta</specMode>
                     <spec>
-                        <nonFinal>false</nonFinal>
+                        <nonFinal>true</nonFinal>
                         <jarType>api</jarType>
-                        <specVersion>1.1</specVersion>
+                        <specVersion>1.0</specVersion>
                         <newSpecVersion>${spec_version}</newSpecVersion>
                         <specBuild>01</specBuild>
                         <specImplVersion>${spec_impl_version}</specImplVersion>
