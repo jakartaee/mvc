@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.mvc</groupId>
     <artifactId>jakarta.mvc-spec</artifactId>
-    <version>1.1-RC1</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Jakarta MVC ${project.version} Spec</name>
     <url>https://www.mvc-spec.org/</url>
@@ -168,9 +168,4 @@
             </plugin>
         </plugins>
     </build>
-    
-
-  <scm>
-    <tag>1.1-RC1-RELEASE</tag>
-  </scm>
 </project>
