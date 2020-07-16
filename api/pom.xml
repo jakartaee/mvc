@@ -21,7 +21,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.mvc</groupId>
     <artifactId>jakarta.mvc-api</artifactId>
-    <version>1.1-RC1-SNAPSHOT</version>
+    <version>1.1-RC1</version>
     <packaging>bundle</packaging>
     <name>Jakarta MVC ${project.version} API</name>
     <description>Jakarta MVC ${project.version} API</description>
@@ -31,7 +31,7 @@
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.6</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <organization>
@@ -169,8 +169,8 @@
                         <configuration>
                             <target>
                                 <copy todir="${project.build.directory}/spec/" overwrite="yes">
-                                    <fileset dir="../spec/target/generated-docs/" includes="spec.pdf"/>
-                                    <fileset dir="../spec/target/tck-audit/" includes="tck-audit.xml"/>
+                                    <fileset dir="../spec/target/generated-docs/" includes="spec.pdf" />
+                                    <fileset dir="../spec/target/tck-audit/" includes="tck-audit.xml" />
                                 </copy>
                             </target>
                         </configuration>
@@ -392,5 +392,6 @@
         <connection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</connection>
         <developerConnection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</developerConnection>
         <url>https://github.com/eclipse-ee4j/mvc-api</url>
-    </scm>
+      <tag>1.1-RC1-RELEASE</tag>
+  </scm>
 </project>

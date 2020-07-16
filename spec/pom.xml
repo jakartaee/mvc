@@ -20,7 +20,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.mvc</groupId>
     <artifactId>jakarta.mvc-spec</artifactId>
-    <version>1.1-RC1-SNAPSHOT</version>
+    <version>1.1-RC1</version>
     <packaging>pom</packaging>
     <name>Jakarta MVC ${project.version} Spec</name>
     <url>https://www.mvc-spec.org/</url>
@@ -29,7 +29,7 @@
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.6</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <organization>
@@ -78,7 +78,7 @@
                             <sourceHighlighter>highlightjs</sourceHighlighter>
                             <backend>html5</backend>
                             <attributes>
-                                <toc/>
+                                <toc />
                                 <linkcss>false</linkcss>
                                 <project-version>${project.version}</project-version>
                             </attributes>
@@ -98,7 +98,7 @@
                             <headerFooter>true</headerFooter>
                             <compact>false</compact>
                             <attributes>
-                                <pagenums/>
+                                <pagenums />
                                 <project-version>${project.version}</project-version>
                                 <numbered>true</numbered>
                                 <docinfo>true</docinfo>
@@ -169,4 +169,8 @@
         </plugins>
     </build>
     
+
+  <scm>
+    <tag>1.1-RC1-RELEASE</tag>
+  </scm>
 </project>
