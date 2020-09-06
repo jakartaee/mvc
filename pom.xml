@@ -81,6 +81,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.deploy.skip>false</maven.deploy.skip>
+        <spec.version>1.1</spec.version>
+        <spec.nonFinal>true</spec.nonFinal>
+        <spec.status>Draft</spec.status>  <!-- Empty for final version -->
     </properties>
 
     <modules>

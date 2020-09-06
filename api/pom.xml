@@ -34,10 +34,6 @@
     </parent>
 
     <properties>
-        <api_package>javax.mvc</api_package>
-        <spec_version>1.1</spec_version>
-        <spec_impl_version>${project.version}</spec_impl_version>
-        <packages.export>javax.mvc.*</packages.export>
         <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
 
@@ -50,13 +46,13 @@
                 <configuration>
                     <specMode>jakarta</specMode>
                     <spec>
-                        <nonFinal>true</nonFinal>
+                        <nonFinal>${spec.nonFinal}</nonFinal>
                         <jarType>api</jarType>
                         <specVersion>1.0</specVersion>
-                        <newSpecVersion>${spec_version}</newSpecVersion>
+                        <newSpecVersion>${spec.version}</newSpecVersion>
                         <specBuild>01</specBuild>
-                        <specImplVersion>${spec_impl_version}</specImplVersion>
-                        <apiPackage>${api_package}</apiPackage>
+                        <specImplVersion>${project.version}</specImplVersion>
+                        <apiPackage>javax.mvc</apiPackage>
                     </spec>
                 </configuration>
                 <executions>
@@ -187,7 +183,7 @@
                         <Extension-Name>${spec.extension.name}</Extension-Name>
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
-                        <Export-Package>${packages.export}</Export-Package>
+                        <Export-Package>javax.mvc.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

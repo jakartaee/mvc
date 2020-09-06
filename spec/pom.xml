@@ -34,6 +34,8 @@
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
+        <revisiondate>${maven.build.timestamp}</revisiondate>
     </properties>
 
     <build>
@@ -63,6 +65,9 @@
                                 <toc/>
                                 <linkcss>false</linkcss>
                                 <project-version>${project.version}</project-version>
+                                <revnumber>${spec.version}</revnumber>
+                                <revremark>${spec.status}</revremark>
+                                <revdate>${revisiondate}</revdate>
                             </attributes>
                             <outputFile>${project.build.directory}/generated-docs/index.html</outputFile>
                         </configuration>
@@ -86,6 +91,9 @@
                                 <docinfo>true</docinfo>
                                 <experimental>false</experimental>
                                 <toc>true</toc>
+                                <revnumber>${spec.version}</revnumber>
+                                <revremark>${spec.status}</revremark>
+                                <revdate>${revisiondate}</revdate>
                             </attributes>
                         </configuration>
                     </execution>
