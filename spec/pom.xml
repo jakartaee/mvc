@@ -22,7 +22,8 @@
     <artifactId>jakarta.mvc-spec</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Jakarta MVC ${project.version} Spec</name>
+    <name>Jakarta MVC Spec</name>
+    <description>Jakarta MVC Spec</description>
     <url>https://www.mvc-spec.org/</url>
  
      <parent>

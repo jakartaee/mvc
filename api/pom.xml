@@ -23,8 +23,8 @@
     <artifactId>jakarta.mvc-api</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <name>Jakarta MVC ${project.version} API</name>
-    <description>Jakarta MVC ${project.version} API</description>
+    <name>Jakarta MVC API</name>
+    <description>Jakarta MVC API</description>
     <url>https://www.mvc-spec.org/</url>
 
     <parent>
