@@ -18,40 +18,24 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jakarta.mvc</groupId>
+
     <artifactId>jakarta.mvc-spec</artifactId>
-    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Jakarta MVC ${project.version} Spec</name>
+    <name>Jakarta MVC Spec</name>
+    <description>Jakarta MVC Spec</description>
     <url>https://www.mvc-spec.org/</url>
- 
-     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.6</version>
-        <relativePath/>
+
+    <parent>
+        <groupId>jakarta.mvc</groupId>
+        <artifactId>jakarta.mvc-parent</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <organization>
-        <name>Eclipse Foundation</name>
-        <url>https://www.eclipse.org/org/foundation/</url>
-    </organization>
-    
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/eclipse-ee4j/mvc-api/issues</url>
-    </issueManagement>
-
-    <mailingLists>
-        <mailingList>
-            <name>Jakarta MVC Devloper Mailing List</name>
-            <archive>https://accounts.eclipse.org/mailing-list/mvc-dev</archive>
-        </mailingList>
-    </mailingLists>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
+        <revisiondate>${maven.build.timestamp}</revisiondate>
     </properties>
 
     <build>
@@ -81,6 +65,9 @@
                                 <toc/>
                                 <linkcss>false</linkcss>
                                 <project-version>${project.version}</project-version>
+                                <revnumber>${spec.version}</revnumber>
+                                <revremark>${spec.status}</revremark>
+                                <revdate>${revisiondate}</revdate>
                             </attributes>
                             <outputFile>${project.build.directory}/generated-docs/index.html</outputFile>
                         </configuration>
@@ -104,6 +91,9 @@
                                 <docinfo>true</docinfo>
                                 <experimental>false</experimental>
                                 <toc>true</toc>
+                                <revnumber>${spec.version}</revnumber>
+                                <revremark>${spec.status}</revremark>
+                                <revdate>${revisiondate}</revdate>
                             </attributes>
                         </configuration>
                     </execution>

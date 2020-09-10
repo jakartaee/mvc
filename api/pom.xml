@@ -19,74 +19,22 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jakarta.mvc</groupId>
+
     <artifactId>jakarta.mvc-api</artifactId>
-    <version>1.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
-    <name>Jakarta MVC ${project.version} API</name>
-    <description>Jakarta MVC ${project.version} API</description>
+    <name>Jakarta MVC API</name>
+    <description>Jakarta MVC API</description>
     <url>https://www.mvc-spec.org/</url>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.6</version>
-        <relativePath/>
+        <groupId>jakarta.mvc</groupId>
+        <artifactId>jakarta.mvc-parent</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <organization>
-        <name>Eclipse Foundation</name>
-        <url>https://www.eclipse.org/org/foundation/</url>
-    </organization>
-
-    <licenses>
-        <license>
-            <name>EPL-2.0</name>
-            <url>http://www.eclipse.org/legal/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>GPL-2.0-with-classpath-exception</name>
-            <url>https://www.gnu.org/software/classpath/license.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>ivargrimstad</id>
-            <email>ivar.grimstad@gmail.com</email>
-            <name>Ivar Grimstad</name>
-            <timezone>CET</timezone>
-        </developer>
-        <developer>
-            <id>chkal</id>
-            <email>christian@kaltepoth.de</email>
-            <name>Christian Kaltepoth</name>
-            <timezone>CET</timezone>
-        </developer>
-    </developers>
-
-    <issueManagement>
-        <system>github</system>
-        <url>https://github.com/eclipse-ee4j/mvc-api/issues</url>
-    </issueManagement>
-
-    <mailingLists>
-        <mailingList>
-            <name>Jakarta MVC Devloper Mailing List</name>
-            <archive>https://accounts.eclipse.org/mailing-list/mvc-dev</archive>
-        </mailingList>
-    </mailingLists>
-
     <properties>
-        <api_package>javax.mvc</api_package>
-        <spec_version>1.1</spec_version>
-        <spec_impl_version>${project.version}</spec_impl_version>
-        <packages.export>javax.mvc.*</packages.export>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
 
     <build>
@@ -98,13 +46,13 @@
                 <configuration>
                     <specMode>jakarta</specMode>
                     <spec>
-                        <nonFinal>true</nonFinal>
+                        <nonFinal>${spec.nonFinal}</nonFinal>
                         <jarType>api</jarType>
                         <specVersion>1.0</specVersion>
-                        <newSpecVersion>${spec_version}</newSpecVersion>
+                        <newSpecVersion>${spec.version}</newSpecVersion>
                         <specBuild>01</specBuild>
-                        <specImplVersion>${spec_impl_version}</specImplVersion>
-                        <apiPackage>${api_package}</apiPackage>
+                        <specImplVersion>${project.version}</specImplVersion>
+                        <apiPackage>javax.mvc</apiPackage>
                     </spec>
                 </configuration>
                 <executions>
@@ -235,7 +183,7 @@
                         <Extension-Name>${spec.extension.name}</Extension-Name>
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
-                        <Export-Package>${packages.export}</Export-Package>
+                        <Export-Package>javax.mvc.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -388,9 +336,4 @@
             </plugin>        
         </plugins>
     </reporting>
-    <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</connection>
-        <developerConnection>scm:git:https://github.com/eclipse-ee4j/mvc-api.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/mvc-api</url>
-    </scm>
 </project>

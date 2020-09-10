@@ -20,9 +20,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.mvc</groupId>
     <artifactId>jakarta.mvc-parent</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Jakarta MVC ${project.version} Parent</name>
+    <name>Jakarta MVC Parent</name>
+    <description>Jakarta MVC Parent</description>
     <url>https://www.mvc-spec.org/</url>
 
     <parent>
@@ -53,9 +54,36 @@
         <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/mvc-api.git</developerConnection>
     </scm>
 
+    <licenses>
+        <license>
+            <name>EPL-2.0</name>
+            <url>http://www.eclipse.org/legal/epl-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>GPL-2.0-with-classpath-exception</name>
+            <url>https://www.gnu.org/software/classpath/license.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>developers</id>
+            <name>Jakarta MVC Team</name>
+            <email>mvc-dev@eclipse.org</email>
+            <url>https://projects.eclipse.org/projects/ee4j.mvc/who</url>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
         <maven.deploy.skip>false</maven.deploy.skip>
+        <spec.version>1.1</spec.version>
+        <spec.nonFinal>true</spec.nonFinal>
+        <spec.status>Draft</spec.status>  <!-- Empty for final version -->
     </properties>
 
     <modules>
