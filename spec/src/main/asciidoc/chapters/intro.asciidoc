@@ -54,7 +54,7 @@ The corresponding Javadocs can be found online at:
 
 https://www.mvc-spec.org/spec/
 
-The reference implementation can be obtained from:
+A compatible implementation can be obtained from:
 
 https://www.mvc-spec.org/krazo/
 
