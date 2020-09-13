@@ -52,11 +52,11 @@ https://github.com/eclipse-ee4j/mvc-api/issues
 
 The corresponding Javadocs can be found online at:
 
-https://www.mvc-spec.org/spec/
+https://jakarta.ee/specifications/mvc/1.1/apidocs/
 
 A compatible implementation can be obtained from:
 
-https://www.mvc-spec.org/krazo/
+https://projects.eclipse.org/projects/ee4j.krazo
 
 The project team seeks feedback from the community on any aspect of this specification, please send comments to:
 
