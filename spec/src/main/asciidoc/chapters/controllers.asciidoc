@@ -9,7 +9,7 @@ This chapter introduces the three components that comprise the
 Controllers
 ~~~~~~~~~~~
 
-[tck-testable tck-id-ctrl-method]#A _Jakarta MVC controller_ is a Jakarta RESTful Web Services [<<jaxrs20,5>>] resource method decorated by `@Controller`#.
+[tck-testable tck-id-ctrl-method]#A _Jakarta MVC controller_ is a Jakarta RESTful Web Services [<<jaxrs21,5>>] resource method decorated by `@Controller`#.
 [tck-testable tck-id-ctrl-class]#If this annotation is applied to a class, then all resource methods in it are regarded as controllers#.
 [tck-testable tck-id-ctrl-hybrid]#Using the `@Controller` annotation on a subset of methods defines a hybrid class in which certain methods are controllers and others are traditional Jakarta RESTful Web Services resource methods.#
 
@@ -75,7 +75,7 @@ i.e.,
 [tck-testable tck-id-inject-field-props]#Likewise, injection of fields and properties is unrestricted and fully compatible with Jakarta RESTful Web Services#.
 Note the restrictions explained in Section <<controller_instances>>.
 
-Controller methods handle a HTTP request directly. Sub-resource locators as described in the Jakarta RESTful Web Services Specification [<<jaxrs20,5>>] are not supported by Jakarta MVC.
+Controller methods handle a HTTP request directly. Sub-resource locators as described in the Jakarta RESTful Web Services Specification [<<jaxrs21,5>>] are not supported by Jakarta MVC.
 
 [[controller_instances]]
 Controller Instances
@@ -88,7 +88,7 @@ Unlike in Jakarta RESTful Web Services where resource classes can be native (cr
 [tck-testable tck-id-request-scope-default]#Like in Jakarta RESTful Web Services, the default resource class instance lifecycle is _per-request_#.
 Implementations MAY support other lifecycles via CDI; the same caveats that apply to Jakarta RESTful Web Services classes in other lifecycles applied to Jakarta MVC classes.
 [tck-testable tck-id-scope-proxy]#In particular, CDI may need to create proxies when, for example, a per-request instance is as a member of a per-application instance#.
-See [<<jaxrs20,5>>] for more information on lifecycles and their caveats.
+See [<<jaxrs21,5>>] for more information on lifecycles and their caveats.
 
 [[response]]
 Response
