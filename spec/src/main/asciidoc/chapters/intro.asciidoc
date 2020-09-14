@@ -12,7 +12,7 @@ typically handled by framework components with little or no interaction from app
 the majority of the controller logic is provided by the framework instead of the application.
 
 The API defined by this specification falls into the action-based category and is, therefore, not intended to be a replacement for
-component-based frameworks such as Jakarta Server Faces [<<jsf22,1>>], but simply a different approach to building Web applications on the Jakarta EE platform.
+component-based frameworks such as Jakarta Server Faces [<<jsf23,1>>], but simply a different approach to building Web applications on the Jakarta EE platform.
 
 [[goals]]
 Goals
@@ -21,7 +21,7 @@ Goals
 The following are goals of the API:
 
 [horizontal]
-Goal 1:: Leverage existing Jakarta EE technologies like Jakarta Contexs and Dependency Injecttion [<<cdi11,2>>] and Jakarta Bean Validation [<<bv11,3>>].
+Goal 1:: Leverage existing Jakarta EE technologies like Jakarta Contexs and Dependency Injecttion [<<cdi20,2>>] and Jakarta Bean Validation [<<bv20,3>>].
 Goal 2:: Define a solid core to build MVC applications without necessarily supporting all the features in its first version.
 Goal 3:: Build on top of Jakarta RESTful Web Services for the purpose of re-using its matching and binding layers.
 Goal 4:: Provide built-in support for Jakarta Server Pages and Facelets view languages.
@@ -52,11 +52,11 @@ https://github.com/eclipse-ee4j/mvc-api/issues
 
 The corresponding Javadocs can be found online at:
 
-https://www.mvc-spec.org/spec/
+https://jakarta.ee/specifications/mvc/1.1/apidocs/
 
-The reference implementation can be obtained from:
+A compatible implementation can be obtained from:
 
-https://www.mvc-spec.org/krazo/
+https://projects.eclipse.org/projects/ee4j.krazo
 
 The project team seeks feedback from the community on any aspect of this specification, please send comments to:
 
@@ -109,12 +109,13 @@ guidance provided by the Jakarta EE Working Group (https://jakarta.ee/).
 Acknowledgements for version 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Version 1.0 was developed as part of https://jcp.org/en/jsr/detail?id=371[JSR 371] under the Java Community Process.
+
 [[spec_leads]]
 Specification Leads
 ^^^^^^^^^^^^^^^^^^^
 
-
-The following table lists the current and former specification leads:
+The following table lists the specification leads of the JSR:
 
 [cols="1,1"]
 |===
@@ -128,7 +129,7 @@ The following table lists the current and former specification leads:
 Expert Group Members
 ^^^^^^^^^^^^^^^^^^^^
 
-This specification is being developed as part of https://jcp.org/en/jsr/detail?id=371[JSR 371] under the Java Community Process. The following are the present expert group members:
+The following were the expert group members:
 
 [cols="1,1"] 
 |===
@@ -148,7 +149,7 @@ This specification is being developed as part of https://jcp.org/en/jsr/detail?i
 |Manfred Riem (Oracle)
 |===
 
-The following are former members of the expert group:
+The following were former members of the expert group:
 
 [cols="1,1"] 
 |===
@@ -160,7 +161,7 @@ The following are former members of the expert group:
 Contributors
 ^^^^^^^^^^^^
 
-The following are the contributors of the specification:
+The following were the contributors of the specification:
 
 [cols="1,1"]
 |===
@@ -170,5 +171,5 @@ The following are the contributors of the specification:
 |
 |===
 
-During the course of this JSR we received many excellent suggestions. Special thanks to Marek Potociar, Dhiru Pandey and Ed Burns, all from Oracle. 
+During the course of this JSR we received many excellent suggestions. Special thanks to Marek Potociar, Dhiru Pandey and Ed Burns, all from Oracle.
 In addition, to everyone in the user’s alias that followed the expert discussions and provided feedback, including Peter Pilgrim, Ivar Grimstad, Jozef Hartinger, Florian Hirsch, Frans Tamura, Rahman Usta, Romain Manni-Bucau, Alberto Souza, among many others.
