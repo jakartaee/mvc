@@ -28,7 +28,7 @@
     <parent>
         <groupId>jakarta.mvc</groupId>
         <artifactId>jakarta.mvc-parent</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -62,7 +62,7 @@
                             <sourceHighlighter>highlightjs</sourceHighlighter>
                             <backend>html5</backend>
                             <attributes>
-                                <toc/>
+                                <toc />
                                 <linkcss>false</linkcss>
                                 <project-version>${project.version}</project-version>
                                 <revnumber>${spec.version}</revnumber>
@@ -85,7 +85,7 @@
                             <headerFooter>true</headerFooter>
                             <compact>false</compact>
                             <attributes>
-                                <pagenums/>
+                                <pagenums />
                                 <project-version>${project.version}</project-version>
                                 <numbered>true</numbered>
                                 <docinfo>true</docinfo>
