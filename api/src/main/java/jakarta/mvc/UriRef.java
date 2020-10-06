@@ -36,6 +36,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UriRef {
 
+    /**
+     * The symbolic name
+     * @return symbolic reference
+     */
     String value();
 
 }
