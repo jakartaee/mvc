@@ -18,4 +18,6 @@ include::chapters/i18n.asciidoc[]
 
 include::chapters/annotations.asciidoc[]
 
+include::chapters/revision.asciidoc[]
+
 include::chapters/refs.asciidoc[]

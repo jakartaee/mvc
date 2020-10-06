@@ -1,0 +1,13 @@
+[appendix]
+Revision History
+----------------
+
+2.0
+~~~
+
+Changed namespace from `javax.mvc.*` to `jakarta.mvc.*`.
+
+1.1
+~~~
+
+No API changes since 1.0.
