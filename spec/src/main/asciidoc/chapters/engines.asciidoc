@@ -14,13 +14,13 @@ required models and (iii) rendering the view and writing the result back to the 
 
 [tck-testable tck-id-jsp-facelets]#Implementations MUST provide built-in support for Jakarta Server Pages and Facelets view engines#. 
 Additional engines may be supported via an extension mechanism based on Jakarta Contexts and Dependency Injection. 
-[tck-testable tck-id-cdi-discovery]#Namely, any Jakarta Contexts and Dependency Injection bean that implements the `javax.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
+[tck-testable tck-id-cdi-discovery]#Namely, any Jakarta Contexts and Dependency Injection bean that implements the `jakarta.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
 
 This is the interface that must be implemented by all Jakarta MVC view engines:
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/engine/ViewEngine.java[lines=19..-1]
+include::{mvc-api-source-dir}jakarta/mvc/engine/ViewEngine.java[lines=19..-1]
 ----
 
 [[selection_algorithm]]
@@ -29,7 +29,7 @@ Selection Algorithm
 
 [tck-testable tck-id-selection-algo]#Implementations should perform the following steps while trying to find a suitable view engine for a view#.
 
-. Lookup all instances of `javax.mvc.engine.ViewEngine` available via Jakarta Contexts and Dependency Injection.
+. Lookup all instances of `jakarta.mvc.engine.ViewEngine` available via Jakarta Contexts and Dependency Injection.
 . Call `supports` on every view engine found in the previous step, discarding those that return `false`.
 . If the resulting set is empty, return `null`.
 . Otherwise, sort the resulting set in descending order of priority using the integer value from the `@Priority` annotation decorating the view engine class or the default value `ViewEngine.PRIORITY_APPLICATION` if the annotation is not present.

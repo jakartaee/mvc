@@ -80,7 +80,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -97,7 +97,7 @@ Comments to: <a href="mailto:mvc-dev@eclipse.org">mvc-dev@eclipse.org</a>.<br>
 Copyright &#169; 2017, 2020 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                     </bottom>
-                    <source>8</source>
+                    <source>11</source>
                 </configuration>
             </plugin>
             <plugin>
