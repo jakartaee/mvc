@@ -17,8 +17,8 @@
  */
 package jakarta.mvc.event;
 
-import javax.ws.rs.container.ResourceInfo;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.ws.rs.core.UriInfo;
 
 /**
  * <p>Event fired after a controller method returns. This event is always fired,
@@ -34,7 +34,8 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author Santiago Pericas-Geertsen
  * @author Christian Kaltepoth
- * @see javax.enterprise.event.Observes
+ * @author Ivar Grimstad
+ * @see jakarta.enterprise.event.Observes
  * @since 1.0
  */
 public interface AfterControllerEvent extends MvcEvent {
@@ -43,7 +44,7 @@ public interface AfterControllerEvent extends MvcEvent {
      * Access to the current request URI information.
      *
      * @return URI info.
-     * @see javax.ws.rs.core.UriInfo
+     * @see jakarta.ws.rs.core.UriInfo
      */
     UriInfo getUriInfo();
 
@@ -51,7 +52,7 @@ public interface AfterControllerEvent extends MvcEvent {
      * Access to the current request controller information.
      *
      * @return resources info.
-     * @see javax.ws.rs.container.ResourceInfo
+     * @see jakarta.ws.rs.container.ResourceInfo
      */
     ResourceInfo getResourceInfo();
 }

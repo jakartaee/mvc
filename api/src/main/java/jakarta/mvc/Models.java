@@ -22,16 +22,17 @@ import java.util.Map;
 /**
  * <p>A map of name to model instances used by a {@link jakarta.mvc.engine.ViewEngine}
  * to process a view. Instances implementing this interface must be injectable using
- * {@link javax.inject.Inject} and are {@link javax.enterprise.context.RequestScoped}.
+ * {@link jakarta.inject.Inject} and are {@link jakarta.enterprise.context.RequestScoped}.
  *
  * <p>Note that certain view engines, such as engines for Jakarta Server Pages and Facelets, support
- * model binding via {@link javax.inject.Named} in which case the use of Models is
+ * model binding via {@link jakarta.inject.Named} in which case the use of Models is
  * optional.
  *
  * @author Santiago Pericas-Geertsen
  * @author Christian Kaltepoth
- * @see javax.inject.Named
- * @see javax.enterprise.context.RequestScoped
+ * @author Ivar Grimstad
+ * @see jakarta.inject.Named
+ * @see jakarta.enterprise.context.RequestScoped
  * @since 1.0
  */
 public interface Models extends Iterable<String> {

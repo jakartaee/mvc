@@ -30,7 +30,7 @@ import java.util.Locale;
  * <li>Gather the set of all implementations of this interface available for injection via
  * CDI.</li>
  * <li>Sort the set of implementations using priorities in descending order. Locale resolvers
- * can be decorated with {@link javax.annotation.Priority} to indicate their priority. If no
+ * can be decorated with {@link jakarta.annotation.Priority} to indicate their priority. If no
  * priority is explicitly defined, the priority is assumed to be <code>1000</code>.</li>
  * <li>Call the method {@link #resolveLocale(LocaleResolverContext)}. If the resolver returns
  * a valid locale, use this locale as the request locale. If the resolver returns
@@ -46,6 +46,7 @@ import java.util.Locale;
  * {@link Locale#getDefault()}.</p>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @see jakarta.mvc.locale.LocaleResolverContext
  * @see MvcContext#getLocale()
  * @see java.util.Locale

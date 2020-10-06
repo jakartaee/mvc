@@ -16,13 +16,14 @@
  */
 package jakarta.mvc.binding;
 
-import javax.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 
 /**
  * <p>Represents a single validation error detected for a parameter. A validation error always
  * corresponds to exactly one {@link ConstraintViolation}.</p>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @since 1.0
  */
 public interface ValidationError extends ParamError {

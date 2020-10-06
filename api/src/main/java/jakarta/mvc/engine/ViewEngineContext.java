@@ -18,11 +18,11 @@
 package jakarta.mvc.engine;
 
 import jakarta.mvc.Models;
-import javax.ws.rs.container.ResourceInfo;
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.ws.rs.core.Configuration;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.UriInfo;
 import java.io.OutputStream;
 import java.util.Locale;
 
@@ -33,6 +33,7 @@ import java.util.Locale;
  *
  * @author Santiago Pericas-Geertsen
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @see jakarta.mvc.engine.ViewEngine
  * @since 1.0
  */
@@ -112,20 +113,20 @@ public interface ViewEngineContext {
     MediaType getMediaType();
 
     /**
-     * Returns the {@link javax.ws.rs.core.UriInfo} instance containing information
+     * Returns the {@link jakarta.ws.rs.core.UriInfo} instance containing information
      * about the current request URI.
      *
      * @return the URI info for the current request.
-     * @see javax.ws.rs.core.UriInfo
+     * @see jakarta.ws.rs.core.UriInfo
      */
     UriInfo getUriInfo();
 
     /**
-     * Returns the {@link javax.ws.rs.container.ResourceInfo} instance containing
+     * Returns the {@link jakarta.ws.rs.container.ResourceInfo} instance containing
      * information about the controller method matched in the current request.
      *
      * @return the resource info for the current request.
-     * @see javax.ws.rs.container.ResourceInfo
+     * @see jakarta.ws.rs.container.ResourceInfo
      */
     ResourceInfo getResourceInfo();
 
@@ -135,7 +136,7 @@ public interface ViewEngineContext {
      * view engines must use to locate views.
      *
      * @return application's configuration.
-     * @see javax.ws.rs.core.Configuration
+     * @see jakarta.ws.rs.core.Configuration
      */
     Configuration getConfiguration();
 }

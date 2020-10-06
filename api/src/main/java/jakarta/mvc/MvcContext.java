@@ -19,8 +19,8 @@ package jakarta.mvc;
 
 import jakarta.mvc.security.Csrf;
 import jakarta.mvc.security.Encoders;
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.UriBuilder;
+import jakarta.ws.rs.core.Configuration;
+import jakarta.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.Locale;
 import java.util.Map;
@@ -32,14 +32,15 @@ import java.util.Map;
  * jakarta.mvc.security.Csrf} and {@link jakarta.mvc.security.Encoders}.</p>
  *
  * <p>Implementations of this class are injectable, must be
- * {@link javax.enterprise.context.RequestScoped} and accessible from Jakarta Expression Language using
+ * {@link jakarta.enterprise.context.RequestScoped} and accessible from Jakarta Expression Language using
  * the name {@code mvc}. For example, the CSRF token name and value can be
  * accessed in Jakarta Expression Language using the expressions {@code mvc.csrf.name} 
  * and {@code
  * mvc.csrf.token}, respectively.</p>
  *
  * @author Santiago Pericas-Geertsen
- * @see javax.ws.rs.core.Configuration
+ * @author Ivar Grimstad
+ * @see jakarta.ws.rs.core.Configuration
  * @since 1.0
  */
 public interface MvcContext {
@@ -85,7 +86,7 @@ public interface MvcContext {
     /**
      * <p>Creates an URI to be matched by a controller method. This is aimed primarily
      * for use in view rendering technologies to avoid duplicating the values of the
-     * {@link javax.ws.rs.Path} annotations.</p>
+     * {@link jakarta.ws.rs.Path} annotations.</p>
      *
      * <p>The controller method can either be identified by the simple name of the controller class
      * and the method name separated by '#' (MyController#myMethod) <em>or</em> by the value
@@ -106,7 +107,7 @@ public interface MvcContext {
     /**
      * <p>Creates an URI to be matched by a controller method. This is aimed primarily
      * for use in view rendering technologies to avoid duplicating the values of the
-     * {@link javax.ws.rs.Path} annotations.</p>
+     * {@link jakarta.ws.rs.Path} annotations.</p>
      *
      * <p>The controller method can either be identified by the simple name of the controller class
      * and the method name separated by '#' (MyController#myMethod) <em>or</em> by the value
@@ -114,8 +115,8 @@ public interface MvcContext {
      *
      * <p>The created URI includes context- and application path.</p>
      *
-     * <p>Any {@link javax.ws.rs.PathParam}, {@link javax.ws.rs.QueryParam}
-     * and {@link javax.ws.rs.MatrixParam} which could apply for given target
+     * <p>Any {@link jakarta.ws.rs.PathParam}, {@link jakarta.ws.rs.QueryParam}
+     * and {@link jakarta.ws.rs.MatrixParam} which could apply for given target
      * method will be replaced if a matching key is found in the supplied Map.
      * Please note that the map must contain values for all path parameters
      * as they are required for building the URI. All other parameters are optional.</p>

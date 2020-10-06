@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * <p>Describes the binding result of all controller fields and controller
  * method parameters which are annotated with a binding annotation like
- * {@link javax.ws.rs.FormParam}.</p>
+ * {@link jakarta.ws.rs.FormParam}.</p>
  *
  * <p>A binding can fail because of type conversion issues or in case of validation
  * errors. The former can for example happen if the binding annotation is placed on
@@ -35,6 +35,7 @@ import java.util.Set;
  * even if the binding for fields and method parameters fails.</p>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @since 1.0
  */
 public interface BindingResult {

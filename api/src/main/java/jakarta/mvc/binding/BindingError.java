@@ -20,9 +20,10 @@ package jakarta.mvc.binding;
 /**
  * <p>Represents a single error that occurred while binding a parameter to a controller
  * method argument or controller field using a binding annotation like 
- * {@link javax.ws.rs.FormParam}.</p>
+ * {@link jakarta.ws.rs.FormParam}.</p>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @since 1.0
  */
 public interface BindingError extends ParamError {

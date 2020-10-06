@@ -17,7 +17,7 @@
  */
 package jakarta.mvc;
 
-import javax.ws.rs.NameBinding;
+import jakarta.ws.rs.NameBinding;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
@@ -32,7 +32,7 @@ import static java.lang.annotation.ElementType.*;
  *
  * <p>A controller method that returns void is required to be annotated with
  * {@link View}. A controller method can return a view path
- * as a {@link java.lang.String} or a {@link javax.ws.rs.core.Response}. If a controller
+ * as a {@link java.lang.String} or a {@link jakarta.ws.rs.core.Response}. If a controller
  * returns {@code null} and it is annotated with {@link View},
  * then the value of this annotation is used as a default.</p>
  *
@@ -45,8 +45,9 @@ import static java.lang.annotation.ElementType.*;
  * </code></pre>
  *
  * @author Santiago Pericas-Geertsen
+ * @author Ivar Grimstad
  * @see View
- * @see javax.ws.rs.core.Response
+ * @see jakarta.ws.rs.core.Response
  * @since 1.0
  */
 @NameBinding

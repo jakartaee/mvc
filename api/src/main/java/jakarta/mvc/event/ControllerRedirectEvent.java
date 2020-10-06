@@ -17,8 +17,8 @@
  */
 package jakarta.mvc.event;
 
-import javax.ws.rs.container.ResourceInfo;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.ws.rs.core.UriInfo;
 import java.net.URI;
 
 /**
@@ -26,8 +26,8 @@ import java.net.URI;
  * status codes 301 (moved permanently), 302 (found), 303 (see other) and
  * 307 (temporary redirect) are REQUIRED to be reported. Note that the
  * JAX-RS methods
- * {@link javax.ws.rs.core.Response#seeOther(java.net.URI)}} and
- * {@link javax.ws.rs.core.Response#temporaryRedirect(java.net.URI)}}
+ * {@link jakarta.ws.rs.core.Response#seeOther(java.net.URI)}} and
+ * {@link jakarta.ws.rs.core.Response#temporaryRedirect(java.net.URI)}}
  * use the status codes to 303 and 307, respectively. Must be
  * fired after {@link jakarta.mvc.event.AfterControllerEvent}.</p>
  *
@@ -39,7 +39,8 @@ import java.net.URI;
  *    }</code></pre>
  *
  * @author Santiago Pericas-Geertsen
- * @see javax.enterprise.event.Observes
+ * @author Ivar Grimstad
+ * @see jakarta.enterprise.event.Observes
  * @since 1.0
  */
 public interface ControllerRedirectEvent extends MvcEvent {
@@ -48,7 +49,7 @@ public interface ControllerRedirectEvent extends MvcEvent {
      * Access to the current request URI information.
      *
      * @return URI info.
-     * @see javax.ws.rs.core.UriInfo
+     * @see jakarta.ws.rs.core.UriInfo
      */
     UriInfo getUriInfo();
 
@@ -56,7 +57,7 @@ public interface ControllerRedirectEvent extends MvcEvent {
      * Access to the current request controller information.
      *
      * @return resources info.
-     * @see javax.ws.rs.container.ResourceInfo
+     * @see jakarta.ws.rs.container.ResourceInfo
      */
     ResourceInfo getResourceInfo();
 

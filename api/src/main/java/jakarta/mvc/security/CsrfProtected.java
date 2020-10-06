@@ -34,12 +34,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * {@link jakarta.mvc.security.Csrf.CsrfOptions#IMPLICIT}, then the use of this
  * annotation is redundant. Jakarta MVC implementations are only REQUIRED to enforce CSRF
  * for POST controllers that consume payloads of type
- * {@link javax.ws.rs.core.MediaType#APPLICATION_FORM_URLENCODED_TYPE}, but
+ * {@link jakarta.ws.rs.core.MediaType#APPLICATION_FORM_URLENCODED_TYPE}, but
  * other HTTP methods and payloads may be optionally supported by the
  * underlying implementation. If declared at the type level, it applies 
  * to all methods in the type.</p>
  *
  * @author Santiago Pericas-Geertsen
+ * @author Ivar Grimstad
  * @see jakarta.mvc.security.Csrf
  * @since 1.0
  */

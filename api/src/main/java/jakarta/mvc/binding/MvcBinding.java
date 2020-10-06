@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
 /**
  * This annotation is used to enable Jakarta MVC-specific binding rules for a Jakarta RESTful Web Services parameter binding. It can
  * be placed on fields and method parameters together with Jakarta RESTful Web Services binding annotations such as
- * {@link javax.ws.rs.FormParam}, {@link javax.ws.rs.QueryParam}, etc.
+ * {@link jakarta.ws.rs.FormParam}, {@link jakarta.ws.rs.QueryParam}, etc.
  * <p>
  * MVC parameter binding differs from traditional Jakarta RESTful Web Services parameter binding in the following aspects:
  * <ul>
@@ -41,6 +41,7 @@ import java.lang.annotation.Target;
  * </ul>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @see BindingResult
  * @see jakarta.mvc.locale.LocaleResolver
  * @since 1.0

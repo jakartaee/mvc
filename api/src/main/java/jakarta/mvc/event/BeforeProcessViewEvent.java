@@ -33,7 +33,8 @@ import jakarta.mvc.engine.ViewEngine;
  *    }</code></pre>
  *
  * @author Santiago Pericas-Geertsen
- * @see javax.enterprise.event.Observes
+ * @author Ivar Grimstad
+ * @see jakarta.enterprise.event.Observes
  * @since 1.0
  */
 public interface BeforeProcessViewEvent extends MvcEvent {

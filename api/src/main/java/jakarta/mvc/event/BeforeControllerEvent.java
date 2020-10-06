@@ -17,8 +17,8 @@
  */
 package jakarta.mvc.event;
 
-import javax.ws.rs.container.ResourceInfo;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.container.ResourceInfo;
+import jakarta.ws.rs.core.UriInfo;
 
 /**
  * <p>Event fired before a controller is called but after it has been matched.</p>
@@ -31,7 +31,8 @@ import javax.ws.rs.core.UriInfo;
  *    }</code></pre>
  *
  * @author Santiago Pericas-Geertsen
- * @see javax.enterprise.event.Observes
+ * @author Ivar Grimstad
+ * @see jakarta.enterprise.event.Observes
  * @since 1.0
  */
 public interface BeforeControllerEvent extends MvcEvent {
@@ -40,7 +41,7 @@ public interface BeforeControllerEvent extends MvcEvent {
      * Access to the current request URI information.
      *
      * @return URI info.
-     * @see javax.ws.rs.core.UriInfo
+     * @see jakarta.ws.rs.core.UriInfo
      */
     UriInfo getUriInfo();
 
@@ -48,7 +49,7 @@ public interface BeforeControllerEvent extends MvcEvent {
      * Access to the current request controller information.
      *
      * @return resources info.
-     * @see javax.ws.rs.container.ResourceInfo
+     * @see jakarta.ws.rs.container.ResourceInfo
      */
     ResourceInfo getResourceInfo();
 }

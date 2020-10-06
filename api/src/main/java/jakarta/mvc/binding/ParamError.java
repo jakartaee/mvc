@@ -20,6 +20,7 @@ package jakarta.mvc.binding;
  * Base interface for errors related to parameter data binding
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @since 1.0
  */
 public interface ParamError {
@@ -33,7 +34,7 @@ public interface ParamError {
 
     /**
      * The parameter name of the value that caused the error. This is usually
-     * the name specified in the binding annotation (i.e. {@link javax.ws.rs.FormParam}).
+     * the name specified in the binding annotation (i.e. {@link jakarta.ws.rs.FormParam}).
      *
      * @return The name of the parameter which caused the error
      */

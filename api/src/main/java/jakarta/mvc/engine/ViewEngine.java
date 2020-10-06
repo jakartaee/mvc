@@ -25,7 +25,7 @@ package jakarta.mvc.engine;
  *     <li>Gather the set of candidate view engines by calling {@link #supports(String)}
  *     and discarding engines that return <code>false</code>.</li>
  *     <li>Sort the resulting set of candidates using priorities. View engines
- *     can be decorated with {@link javax.annotation.Priority} to indicate
+ *     can be decorated with {@link jakarta.annotation.Priority} to indicate
  *     their priority; otherwise the priority is assumed to be {@link ViewEngine#PRIORITY_APPLICATION}.</li>
  *     <li>If more than one candidate is available, choose one in an
  *     implementation-defined manner.</li>
@@ -39,7 +39,8 @@ package jakarta.mvc.engine;
  * <code>xhtml</code>.</p>
  *
  * @author Santiago Pericas-Geertsen
- * @see javax.annotation.Priority
+ * @author Ivar Grimstad
+ * @see jakarta.annotation.Priority
  * @see jakarta.mvc.event.BeforeProcessViewEvent
  * @since 1.0
  */
@@ -49,7 +50,7 @@ public interface ViewEngine {
     /**
      * Name of property that can be set to override the root location for views in an archive.
      *
-     * @see javax.ws.rs.core.Application#getProperties()
+     * @see jakarta.ws.rs.core.Application#getProperties()
      */
     String VIEW_FOLDER = "jakarta.mvc.engine.ViewEngine.viewFolder";
 

@@ -16,10 +16,10 @@
  */
 package jakarta.mvc.locale;
 
-import javax.ws.rs.core.Configuration;
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.UriInfo;
+import jakarta.ws.rs.core.Configuration;
+import jakarta.ws.rs.core.Cookie;
+import jakarta.ws.rs.core.Request;
+import jakarta.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +28,7 @@ import java.util.Locale;
  * locale.</p>
  *
  * @author Christian Kaltepoth
+ * @author Ivar Grimstad
  * @see jakarta.mvc.locale.LocaleResolver
  * @since 1.0
  */
@@ -37,7 +38,7 @@ public interface LocaleResolverContext {
      * Returns the application's configuration.
      *
      * @return application's configuration.
-     * @see javax.ws.rs.core.Configuration
+     * @see jakarta.ws.rs.core.Configuration
      */
     Configuration getConfiguration();
 
