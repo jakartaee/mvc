@@ -42,7 +42,7 @@
             <plugin>
                 <groupId>org.glassfish.build</groupId>
                 <artifactId>spec-version-maven-plugin</artifactId>
-                <version>1.5</version>
+                <version>2.1</version>
                 <configuration>
                     <specMode>jakarta</specMode>
                     <spec>
@@ -52,7 +52,7 @@
                         <newSpecVersion>${spec.version}</newSpecVersion>
                         <specBuild>01</specBuild>
                         <specImplVersion>${project.version}</specImplVersion>
-                        <apiPackage>javax.mvc</apiPackage>
+                        <apiPackage>jakarta.mvc</apiPackage>
                     </spec>
                 </configuration>
                 <executions>
@@ -188,7 +188,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                         <Extension-Name>${spec.extension.name}</Extension-Name>
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
-                        <Export-Package>javax.mvc.*</Export-Package>
+                        <Export-Package>jakarta.mvc.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
