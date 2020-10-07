@@ -9,7 +9,7 @@ This mechanism is based on Jakarta Contexts and Dependency Injection events that
 Observers
 ~~~~~~~~~
 
-The package `javax.mvc.event` defines a number of event types that MUST be fired by implementations during the processing of a request.
+The package `jakarta.mvc.event` defines a number of event types that MUST be fired by implementations during the processing of a request.
 Implementations MAY extend this set and also provide additional information on any of the events defined by this specification.
 The reader is referred to the implementation’s documentation for more information on event support.
 
@@ -19,12 +19,12 @@ Observing events can be useful for applications to learn about the lifecycle of 
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/event/BeforeControllerEvent.java[lines=22..-1]
+include::{mvc-api-source-dir}jakarta/mvc/event/BeforeControllerEvent.java[lines=22..-1]
 ----
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/event/AfterControllerEvent.java[lines=22..-1]
+include::{mvc-api-source-dir}jakarta/mvc/event/AfterControllerEvent.java[lines=22..-1]
 ----
 
 Applications can monitor these events using an observer as shown next.
@@ -57,12 +57,12 @@ The <<view_engines>> section describes the algorithm used by implementations to 
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/event/BeforeProcessViewEvent.java[lines=21..-1]
+include::{mvc-api-source-dir}jakarta/mvc/event/BeforeProcessViewEvent.java[lines=21..-1]
 ----
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/event/AfterProcessViewEvent.java[lines=21..-1]
+include::{mvc-api-source-dir}jakarta/mvc/event/AfterProcessViewEvent.java[lines=21..-1]
 ----
 
 These events can be observed in a similar manner:
@@ -109,12 +109,12 @@ For more information about the interaction between views and models, the reader 
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/event/ControllerRedirectEvent.java[lines=23..-1]
+include::{mvc-api-source-dir}jakarta/mvc/event/ControllerRedirectEvent.java[lines=23..-1]
 ----
 
 Jakarta Contexts and Dependency Injection events fired by implementations are _synchronous_, so it is recommended that applications carry out only simple tasks in their observer methods,
 avoiding long-running computations as well as blocking calls.
-For a complete list of events, the reader is referred to the Javadoc for the `javax.mvc.event` package.
+For a complete list of events, the reader is referred to the Javadoc for the `jakarta.mvc.event` package.
 
 Event reporting requires the Jakarta MVC implementations to create event objects before firing.
 In high-throughput systems without any observers the number of unnecessary objects created may not be insignificant.

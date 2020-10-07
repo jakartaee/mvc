@@ -98,6 +98,13 @@ Non-normative notes are formatted as shown below.
 [NOTE]
 This is a note.
 
+[[acks20]]
+Acknowledgements for version 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Jakarta MVC 2.0 specification was created by the Jakarta MVC Specification Project with
+guidance provided by the Jakarta EE Working Group (https://jakarta.ee/).
+
 [[acks11]]
 Acknowledgements for version 1.1
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

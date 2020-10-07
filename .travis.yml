@@ -1,10 +1,6 @@
 language: java
 jdk:
-- openjdk8
-- openjdk9
-- openjdk10
 - openjdk11
-- openjdk12
 
 cache:
   directories:
@@ -19,14 +15,14 @@ deploy:
     on:
       repo: eclipse-ee4j/mvc-spec
       branch: master
-      jdk: openjdk8
+      jdk: openjdk11
   - provider: script
     script: .travis/deploy-spec-html.sh
     skip_cleanup: true
     on:
       repo: eclipse-ee4j/mvc-spec
       branch: master
-      jdk: openjdk8
+      jdk: openjdk11
 
 env:
   global:

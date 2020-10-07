@@ -48,11 +48,11 @@ Resolving Algorithm
 ~~~~~~~~~~~~~~~~~~~
 
 The _locale resolver_ is responsible to detect the request locale for each request processed by the Jakarta MVC runtime.
-A locale resolver MUST implement the `javax.mvc.locale.LocaleResolver` interface which is defined like this:
+A locale resolver MUST implement the `jakarta.mvc.locale.LocaleResolver` interface which is defined like this:
 
 [source,java,numbered]
 ----
-include::{mvc-api-source-dir}javax/mvc/locale/LocaleResolver.java[lines=21..-1]
+include::{mvc-api-source-dir}jakarta/mvc/locale/LocaleResolver.java[lines=21..-1]
 ----
 
 There may be more than one locale resolver for a Jakarta MVC application. Locale resolvers are discovered using Jakarta Contexts and Dependency Injection.
