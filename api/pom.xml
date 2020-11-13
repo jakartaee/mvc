@@ -198,8 +198,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
-            <!-- TODO: Replace milestone with final release when released -->
-            <version>3.0.0-M1</version>
+            <version>3.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -217,26 +216,9 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
-            <!-- TODO: Replace rc with final release when released -->
-            <version>2.0.0-RC1</version>
+            <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- TODO: The following deps to be removed when released -->
-        <!-- Only here to solve transitive deps problem from CDI -->
-        <!-- BEGIN: -->
-        <dependency>
-            <groupId>jakarta.el</groupId>
-            <artifactId>jakarta.el-api</artifactId>
-            <version>4.0.0.M1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.interceptor</groupId>
-            <artifactId>jakarta.interceptor-api</artifactId>
-            <version>2.0.0-RC2</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- END -->
     </dependencies>
     <profiles>
         <profile>
@@ -346,7 +328,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.4</version>
+                <version>4.0.0</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
