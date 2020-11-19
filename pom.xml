@@ -2,6 +2,7 @@
 <!--
 
     Copyright (c) 2017-2018 JSR 371 expert group and contributors
+    Copyright (c) 2020 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -84,7 +85,7 @@
         <maven.deploy.skip>false</maven.deploy.skip>
         <spec.version>2.0</spec.version>
         <spec.nonFinal>false</spec.nonFinal>
-        <spec.status>Draft</spec.status>  <!-- Empty for final version -->
+        <spec.status>Final Release</spec.status>
     </properties>
 
     <modules>
