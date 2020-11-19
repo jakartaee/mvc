@@ -6,7 +6,16 @@ cache:
   directories:
     - $HOME/.m2
 
-script: mvn clean install -B -V -Pstaging
+env:
+  global:
+    #         - BUILD_PROFILE=
+    - BUILD_PROFILE=-Pstaging
+
+
+jobs:
+  include:
+    - stage: build
+      script: mvn -B -V clean install ${BUILD_PROFILE}
 
 #deploy:
 #  - provider: script
