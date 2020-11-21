@@ -29,7 +29,7 @@
     <parent>
         <groupId>jakarta.mvc</groupId>
         <artifactId>jakarta.mvc-parent</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -219,27 +219,8 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- TODO: The following deps to be removed when released -->
-        <!-- Only here to solve transitive deps problem from CDI -->
-        <!-- BEGIN: -->
-        <dependency>
-            <groupId>jakarta.interceptor</groupId>
-            <artifactId>jakarta.interceptor-api</artifactId>
-            <version>2.0.0-RC2</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- END -->
     </dependencies>
     <profiles>
-        <profile>
-            <id>jdk9plus</id>
-            <activation>
-                <jdk>[9,)</jdk>
-            </activation>
-            <properties>
-                <maven.compiler.release>11</maven.compiler.release>
-            </properties>
-        </profile>
         <profile>
             <id>jacoco</id>
             <build>
