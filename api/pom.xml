@@ -98,6 +98,7 @@ Copyright &#169; 2017, 2020 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                     </bottom>
                     <source>11</source>
+                    <docfilessubdirs>true</docfilessubdirs>
                 </configuration>
             </plugin>
             <plugin>
