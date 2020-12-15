@@ -36,8 +36,7 @@
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
-<!--        <revisiondate>${maven.build.timestamp}</revisiondate>-->
-        <revisiondate>November 19, 2020</revisiondate>
+        <revisiondate>${maven.build.timestamp}</revisiondate>
     </properties>
 
     <build>
