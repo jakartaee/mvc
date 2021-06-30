@@ -27,7 +27,7 @@ The PDF and HTML will be generated in `spec/target/generated-docs/`
 
 == Tagging phrases for the TCK
 
-The [Jakarta MVC TCK](https://github.com/eclipse-ee4j/mvc-api) is a suite of unit
+The [Jakarta MVC TCK](https://github.com/eclipse-ee4j/mvc-tck) is a suite of unit
 tests for validating the compliance of MVC implementations with the specification.
 
 The tests of the TCK are based on assertions representing sentences and phrases in this
