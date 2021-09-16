@@ -51,7 +51,6 @@ closing bracket ]` will be taken as the ID. Can be used together with `tck-testa
 defined id will get a letter assigned as their ID, in the order of apperance within their section
 (a, b, c, ...)
 
-
 ## Audit XML to calculate spec coverage in tests
 
 `mvn clean install` (or just `mvn generate-resources`) in the `spec` directory will create a `tck-audit.xml` file under
