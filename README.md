@@ -1,4 +1,6 @@
-= Jakarta MVC Specification and API
+[![Java CI with Maven](https://github.com/eclipse-ee4j/mvc-api/actions/workflows/main.yml/badge.svg)](https://github.com/eclipse-ee4j/mvc-api/actions/workflows/main.yml)
+
+# Jakarta MVC Specification and API
 
 This project contains the specification document and Java API sources. The project
 is organized into two modules: _api_ and _spec_.
@@ -7,7 +9,7 @@ API JAR and JavaDoc.
 The _spec_ module contains the specification document sources, which may be used
 to generate the specification document.
 
-== Generating the API and JavaDoc
+## Generating the API and JavaDoc
 
 Just enter `mvn clean install` at the command line. Maven will generate the following artifacts.
 
@@ -19,13 +21,13 @@ API JavaDoc::
 * The JavaDoc for the api interfaces and classes.
 * In the directory: `api/target/apidocs`
 
-== Generating the Specification
+## Generating the Specification
 
 run `mvn clean install` in the `spec` directory
 
 The PDF and HTML will be generated in `spec/target/generated-docs/`
 
-== Tagging phrases for the TCK
+## Tagging phrases for the TCK
 
 The [Jakarta MVC TCK](https://github.com/eclipse-ee4j/mvc-tck) is a suite of unit
 tests for validating the compliance of MVC implementations with the specification.
@@ -50,7 +52,7 @@ defined id will get a letter assigned as their ID, in the order of apperance wit
 (a, b, c, ...)
 
 
-== Audit XML to calculate spec coverage in tests
+## Audit XML to calculate spec coverage in tests
 
 `mvn clean install` (or just `mvn generate-resources`) in the `spec` directory will create a `tck-audit.xml` file under
 `target/generated-docs`. This file contains the `[tck-testable]` assertions found in the spec (asciidoc),
