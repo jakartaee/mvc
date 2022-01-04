@@ -1,0 +1,49 @@
+[[form_method_overwrite]]
+Form method override
+--------------------
+
+This chapter introduces the notion of _form method overwrite_ and describes how Jakarta MVC supports HTTP methods besides `GET` and `POST` when using HTML forms.
+
+[[form_method_overwrite_introduction]]
+Introduction
+~~~~~~~~~~~~
+
+The HTML `<form>` is per default only capable of handling the HTTP `GET` and `POST` verbs. Anyway, more complex applications maybe want to use Jakarta MVC to support HTML as one type of resource representation and need the power of other HTTP verbs like `PATCH` or `DELETE` too. Therefore Jakarta MVC supports overwriting the HTTP method by providing an easy to use and configurable mechanism.
+
+Jakarta MVC defines the term _form method overwrite_ as the mechanism being responsible for changing the HTTP request's method to something different than `GET` or `POST`. 
+
+The _form method overwrite_ MUST happen exactly once per request as described in <<form_method_overwrite_resolving_algorithm>> before the controller is resolved.
+
+To have control over the form method handling, Jakarta MVC provides two properties with constants for easier usage in the class `jakarta.mvc.form.FormMethodOverwriter`:
+
+[source,java,numbered]
+----
+include::{mvc-api-source-dir}jakarta/mvc/form/FormMethodOverwriter.java[lines=26..-1]
+----
+
+- `jakarta.mvc.form.FormMethodOverwrite` which can be either `ENABLED` or `DISABLED`. The legal options for this property are defined in `jakarta.mvc.form.FormMethodOverwriter.Options`. Its default value is `ENABLED`.
+- `jakarta.mvc.form.HiddenFieldName` which defines the name of the hidden input field containing the HTTP method which shall be used instead of the original one.
+The default value `_method` is defined in `jakarta.mvc.form.FormMethodOverwriter#HIDDEN_FIELD_NAME_DEFAULT`.
+
+The following sections will explain the form method overwrite resolving algorithm provided by the Jakarta MVC implementation.
+
+[[form_method_overwrite_resolving_algorithm]]
+Resolving Algorithm
+~~~~~~~~~~~~~~~~~~~
+
+The _form method overwriter_ is responsible to detect if the HTTP method shall be overwritten and perform the overwrite if necessary. The specification won't provide an interface for this task, as there are a lot of possibilities provided by the specifications MVC is based on, like `HttpServletFilter` from Jakarta Servlet or Jakarta RESTful's `ContainerRequestFilter`.
+
+[tck-testable tck-id-form-overwriter-algorithm]#Implementations MUST use the following algorithm to overwrite the HTTP method for each request#:
+
+. Check if the following preconditions are `true`:
+.. The configuration property `jakarta.mvc.form.FormMethodOverwrite` is set to `FormMethodOverwriter.Options#ENABLED`
+.. The request is a `POST` request.
+.. A form field with the name like it's configured in `jakarta.mvc.form.HiddenFieldName` is available
+
+. If all conditions are resolved to true:
+.. Overwrite the HTTP method to the value provided by the hidden form field.
+
+. If any of these preconditions evaluates to `false`: 
+.. End the procedure without changing the request's HTTP method
+
+Applications can either rely on the form method overwriter algorithm which is described in this section or provide a custom form method overwriter which implements some other strategy.
