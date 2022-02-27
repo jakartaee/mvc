@@ -20,4 +20,6 @@ include::chapters/annotations.asciidoc[]
 
 include::chapters/revision.asciidoc[]
 
+include::chapters/form-method-overwrite.asciidoc[]
+
 include::chapters/refs.asciidoc[]
