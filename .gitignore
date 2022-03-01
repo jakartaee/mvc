@@ -5,3 +5,7 @@ nbactions.xml
 nb-configuration.xml
 *.iml
 site.zip
+
+.project
+.classpath
+.settings/
