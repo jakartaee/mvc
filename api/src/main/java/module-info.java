@@ -19,6 +19,7 @@
  */
 module jakarta.mvc {
 
+    exports jakarta.mvc;
     exports jakarta.mvc.binding;
     exports jakarta.mvc.engine;
     exports jakarta.mvc.event;
