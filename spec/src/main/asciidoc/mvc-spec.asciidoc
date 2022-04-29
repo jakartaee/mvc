@@ -16,10 +16,10 @@ include::chapters/engines.asciidoc[]
 
 include::chapters/i18n.asciidoc[]
 
+include::chapters/form-method-overwrite.asciidoc[]
+
 include::chapters/annotations.asciidoc[]
 
 include::chapters/revision.asciidoc[]
-
-include::chapters/form-method-overwrite.asciidoc[]
 
 include::chapters/refs.asciidoc[]
