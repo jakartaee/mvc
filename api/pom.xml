@@ -190,6 +190,10 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                         <Implementation-Version>${spec.implementation.version}</Implementation-Version>
                         <Specification-Version>${spec.specification.version}</Specification-Version>
                         <Export-Package>jakarta.mvc.*</Export-Package>
+
+                        <!-- Use '>=3.0' instead of '[3.0,4)' for 'Import-Package' -->
+                        <_consumer-policy>$${versionmask;==}</_consumer-policy>
+
                     </instructions>
                 </configuration>
             </plugin>
