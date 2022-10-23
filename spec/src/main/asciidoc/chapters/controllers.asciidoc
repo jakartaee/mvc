@@ -193,7 +193,7 @@ Models
 Jakarta MVC controllers are responsible for combining data models and views (templates) to produce web application pages. 
 This specification supports two kinds of models: the first is based on CDI `@Named` beans,
 and the second on the `Models` interface which defines a map between names and objects.
-[tck-testable tck-id-builtin-both-models]#Jakarta MVC provides view engines for Jakarta Server Pages and Facelets out of the box, which support both types#.
+[tck-testable tck-id-builtin-both-models]#Jakarta MVC provides a view engine for Jakarta Server Pages out of the box, which support both types#.
 For all other view engines supporting the `Models` interface is mandatory,
 support for CDI `@Named` beans is OPTIONAL but highly RECOMMENDED.
 
@@ -289,21 +289,6 @@ Here is the Jakarta Server Pages page for the hello-world example:
 [tck-testable tck-id-jsp-el]#In Jakarta Server Pages, model properties are accessible via EL# [<<el30,6>>]. In the example above, the property `message` is read from the `greeting` model
 whose name was either specified in a `@Named` annotation or used as a key in the `Models` map, depending on which controller from the <<models>> section triggered this view's processing.
 
-Here is the corresponding example using Facelets instead of Jakarta Server Pages:
-
-[source,html,numbered]
-----
-<!DOCTYPE html>
-<html lang="en" xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Hello</title>
-    </h:head>
-    <h:body>
-        <h:outputText value="#{greeting.message}" /> 
-    </h:body>
-</html>
-----
-
 [[mvc_uri]]
 Building URIs in a View
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -383,4 +368,4 @@ Given such a controller class, the view can generate a matching URI by referenci
 ${mvc.uri('book-list')}
 ----
 
-Please note that this feature will work with Jakarta Server Pages, Facelets and all view engines which support invoking methods on CDI model objects.
+Please note that this feature will work with Jakarta Server Pages and all view engines which support invoking methods on CDI model objects.

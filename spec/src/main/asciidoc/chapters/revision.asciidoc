@@ -2,6 +2,17 @@
 [[revision_history]]
 Revision History
 ----------------
+3.0
+[[version_three_zero]]
+~~~
+
+Deprecate requirement for Facelets support
+
+2.1
+[[version_two_one]]
+~~~
+
+Specified `FormMethodOverwrite` for extended HTTP method support
 
 2.0
 [[version_two_zero]]
