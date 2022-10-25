@@ -24,7 +24,7 @@ import java.util.Map;
  * to process a view. Instances implementing this interface must be injectable using
  * {@link jakarta.inject.Inject} and are {@link jakarta.enterprise.context.RequestScoped}.
  *
- * <p>Note that certain view engines, such as engines for Jakarta Server Pages and Facelets, support
+ * <p>Note that certain view engines, such as the engine for Jakarta Server Pages, support
  * model binding via {@link jakarta.inject.Named} in which case the use of Models is
  * optional.
  *

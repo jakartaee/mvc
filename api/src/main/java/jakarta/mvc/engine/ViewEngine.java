@@ -33,10 +33,9 @@ package jakarta.mvc.engine;
  *     <li>Call method {@link #processView(ViewEngineContext)} to process view.</li>
  *     <li>Fire a {@link jakarta.mvc.event.AfterProcessViewEvent} event.</li>
  * </ol>
- * <p>The default view engines for Jakarta Server Pages and Facelets use file extensions to determine
+ * <p>The default view engine for Jakarta Server Pages uses file extensions to determine
  * support. Namely, the default Jakarta Server Pages view engine supports views with extensions <code>jsp</code>
- * and <code>jspx</code>, and the one for Facelets supports views with extension
- * <code>xhtml</code>.</p>
+ * and <code>jspx</code>.</p>
  *
  * @author Santiago Pericas-Geertsen
  * @author Ivar Grimstad

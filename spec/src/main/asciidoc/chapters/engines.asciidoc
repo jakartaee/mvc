@@ -12,7 +12,7 @@ Introduction
 A _view engine_ is responsible for processing views. In this context, processing entails (i) locating and loading a view (ii) preparing any
 required models and (iii) rendering the view and writing the result back to the client.
 
-[tck-testable tck-id-jsp-facelets]#Implementations MUST provide built-in support for Jakarta Server Pages and Facelets view engines#. 
+[tck-testable tck-id-jsp]#Implementations MUST provide built-in support for Jakarta Server Pages#.
 Additional engines may be supported via an extension mechanism based on Jakarta Contexts and Dependency Injection. 
 [tck-testable tck-id-cdi-discovery]#Namely, any Jakarta Contexts and Dependency Injection bean that implements the `jakarta.mvc.engine.ViewEngine` interface MUST be considered as a possible target for processing by calling its `supports` method, discarding the engine if this method returns `false`#.
 
@@ -41,34 +41,10 @@ The `processView` method has all the information necessary for processing in the
 
 Prior to the view render phase, all entries available in `Models` MUST be bound in such a way that they become available to the view being processed. 
 The exact mechanism for this depends on the actual view engine implementation. 
-[tck-testable tck-id-models-binding]#In the case of the built-in view engines for JSPs and Facelets, entries in `Models` must be bound by calling `HttpServletRequest.setAttribute(String, Object)`#.
+[tck-testable tck-id-models-binding]#In the case of the built-in view engines for JSPs, entries in `Models` must be bound by calling `HttpServletRequest.setAttribute(String, Object)`#.
 Calling this method ensures access to the named models from EL expressions.
 
 A view returned by a controller method represents a path within an application archive. 
 [tck-testable tck-id-path-relative]#If the path is relative, does not start with `/`, implementations MUST resolve view paths relative to the view folder, which defaults to `/WEB-INF/views/`#. 
 [tck-testable tck-id-path-absolute]#If the path is absolute, no further processing is required#. 
 It is recommended to use relative paths and a location under `WEB-INF` to prevent direct access to views as static resources.
-
-[[faces_servlet]]
-FacesServlet
-~~~~~~~~~~~~
-
-Because Facelets support is not enabled by default, Jakarta MVC applications that use Facelets are required to package a `web.xml` deployment descriptor with the following entry mapping the extension `*.xhtml` as shown next:
-
-[source,xml,numbered]
-----
-<servlet>
-    <servlet-name>Faces Servlet</servlet-name>
-    <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-</servlet>
-<servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.xhtml</url-pattern>
-</servlet-mapping>
-----
-
-Alternatively to a `web.xml` deployment descriptor an empty `faces-config.xml` file can be placed in the `WEB-INF` folder to enable Facelets support.
-
-It is worth noting that if you opt to use Facelets as a view technology for your Jakarta MVC application, regular Jakarta Server Faces post-backs will not be processed by the Jakarta MVC runtime. 
-The usage of `<h:form />` and depending form components like `<h:inputText />` is not recommended as they would be the entry point to a real Jakarta Server Faces application.
