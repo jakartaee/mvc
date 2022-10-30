@@ -6,7 +6,7 @@ Revision History
 [[version_three_zero]]
 ~~~
 
-Deprecate requirement for Facelets support
+Remove requirement for Facelets support
 
 2.1
 [[version_two_one]]
