@@ -54,6 +54,14 @@ public interface ViewEngine {
     String VIEW_FOLDER = "jakarta.mvc.engine.ViewEngine.viewFolder";
 
     /**
+     * The default view file extension that is used to fetch templates. For example, if this setting is set to <code>.jsp</code>,
+     * instead of returning <code>index.jsp</code> only <code>index</code> is required.
+     *
+     * @see jakarta.ws.rs.core.Application#getProperties()
+     */
+    String VIEW_EXTENSION = "jakarta.mvc.engine.ViewEngine.defaultViewFileExtension";
+
+    /**
      * Default value for property {@link #VIEW_FOLDER}.
      */
     String DEFAULT_VIEW_FOLDER = "/WEB-INF/views/";
