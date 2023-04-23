@@ -70,6 +70,14 @@ public interface MvcContext {
     Csrf getCsrf();
 
     /**
+     * Get the name of the hidden field that is required for the {@link jakarta.mvc.form.FormMethodOverwriter}.
+     *
+     * @return the custom name set by using {@link jakarta.mvc.form.FormMethodOverwriter#HIDDEN_FIELD_NAME}
+     * or the default value in {@link jakarta.mvc.form.FormMethodOverwriter#DEFAULT_HIDDEN_FIELD_NAME}.
+     */
+    String getHiddenMethodFieldName();
+
+    /**
      * Get the built-in encoders.
      *
      * @return instance of encoders.
