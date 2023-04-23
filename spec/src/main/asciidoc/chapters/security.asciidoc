@@ -63,7 +63,7 @@ Another way to convey this information to and from the client is via an HTTP hea
 [tck-testable tck-id-csrf-verify]#Jakarta MVC implementations are REQUIRED to support CSRF tokens both as form fields (with the help of the application developer as shown above) and as HTTP headers#.
 
 The application-level property `jakarta.mvc.security.CsrfProtection` enables CSRF protection when set to one of the possible values defined in `jakarta.mvc.security.Csrf.CsrfOptions`.
-[tck-testable tck-id-csrf-opt-default]#The default value of this property is `CsrfOptions.EXPLICIT`#.
+[tck-testable tck-id-csrf-opt-default]#The default value of this property is `CsrfOptions.IMPLICIT`#.
 [tck-testable tck-id-csrf-inject-header]#Any other value than `CsrfOptions.OFF` will automatically inject a CSRF token as an HTTP header#.
 [tck-testable tck-id-csrf-custom-header-name]#The actual name of the header can be configured via the `Csrf.CSRF_HEADER_NAME` configuration property#.
 [tck-testable tck-id-csrf-default-header-name]#The default name of the header is `Csrf.DEFAULT_CSRF_HEADER_NAME`#.
