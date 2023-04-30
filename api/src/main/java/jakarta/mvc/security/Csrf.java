@@ -57,11 +57,11 @@ public interface Csrf {
          */
         OFF,
         /**
-         * Enabling CSRF requires use of {@link CsrfProtected} explicitly (default).
+         * Enabling CSRF requires use of {@link CsrfProtected} explicitly.
          */
         EXPLICIT,
         /**
-         * CSRF enabled automatically for all controllers.
+         * CSRF enabled automatically for all controllers (default).
          */
         IMPLICIT
     };
