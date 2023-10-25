@@ -31,6 +31,7 @@
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
+        <relativePath/>
     </parent>
 
     <organization>
