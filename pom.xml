@@ -80,7 +80,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <maven.deploy.skip>false</maven.deploy.skip>
         <spec.version>3.0</spec.version>
         <spec.nonFinal>true</spec.nonFinal> <!-- set to false for release -->

@@ -9,3 +9,4 @@ site.zip
 .project
 .classpath
 .settings/
+.vscode/
