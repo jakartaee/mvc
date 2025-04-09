@@ -2,7 +2,7 @@
 <!--
 
     Copyright (c) 2017-2018 JSR 371 expert group and contributors
-    Copyright (c) 2020, 2024 Contributors to the Eclipse Foundation
+    Copyright (c) 2020, 2025 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -41,7 +41,7 @@
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/mvc-api/issues</url>
+        <url>https://github.com/jakartaeej/mvc/issues</url>
     </issueManagement>
 
     <mailingLists>
@@ -52,8 +52,8 @@
     </mailingLists>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/mvc-api.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/mvc-api.git</developerConnection>
+        <connection>scm:git:ssh://git@github.com/jakartaee/mvc.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/mvc.git</developerConnection>
     </scm>
 
     <licenses>
