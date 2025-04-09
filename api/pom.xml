@@ -49,7 +49,7 @@
                     <spec>
                         <nonFinal>${spec.nonFinal}</nonFinal>
                         <jarType>api</jarType>
-                        <specVersion>2.1</specVersion>
+                        <specVersion>3.0</specVersion>
                         <newSpecVersion>${spec.version}</newSpecVersion>
                         <specBuild>01</specBuild>
                         <specImplVersion>${project.version}</specImplVersion>

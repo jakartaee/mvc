@@ -83,8 +83,8 @@
         <maven.compiler.release>17</maven.compiler.release>
         <maven.deploy.skip>false</maven.deploy.skip>
         <spec.version>3.0</spec.version>
-        <spec.nonFinal>true</spec.nonFinal> <!-- set to false for release -->
-        <spec.status>Draft</spec.status> <!-- Final Release | Draft -->
+        <spec.nonFinal>false</spec.nonFinal> <!-- set to false for release -->
+        <spec.status>Final Release</spec.status> <!-- Final Release | Draft -->
     </properties>
 
     <modules>
