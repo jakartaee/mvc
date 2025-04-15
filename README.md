@@ -59,3 +59,7 @@ and is used in the TCK project to analyse the spec coverage in tests.
 
 The process is copied and adapted from the beanvalidation spec project
 (https://github.com/eclipse-ee4j/beanvalidation-api).
+
+## TCK Challenge and resolution process for Jakarta MVC
+
+Test challenges for Jakarta MVC may be resolved through Lazy Consensus. Please see the TCK Users Guide for Jakarta MVC for more details.
