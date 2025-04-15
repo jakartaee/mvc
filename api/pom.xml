@@ -319,6 +319,56 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sigtest</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack-dependencies</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>unpack-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <stripVersion>true</stripVersion>
+                                    <overWriteReleases>true</overWriteReleases>
+                                    <outputDirectory>target/classes</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>jakarta.tck</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>2.6</version>
+                        <executions>
+                            <execution>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                              <packages>
+                                    jakarta.mvc,
+                                    jakarta.mvc.binding,
+                                    jakarta.mvc.engine,
+                                    jakarta.mvc.event,
+                                    jakarta.mvc.locale,
+                                    jakarta.mvc.security
+                            </packages>
+                            <sigfile>mvc-tck-sigtest-3.0.0.sigfile</sigfile>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <reporting>
         <plugins>
