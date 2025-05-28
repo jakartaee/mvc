@@ -52,7 +52,7 @@ https://github.com/eclipse-ee4j/mvc-api/issues
 
 The corresponding Javadocs can be found online at:
 
-https://jakarta.ee/specifications/mvc/1.1/apidocs/
+https://jakarta.ee/specifications/mvc/3.1/apidocs/
 
 A compatible implementation can be obtained from:
 
