@@ -48,7 +48,7 @@ Additional Information
 
 The issue tracking system for this specification can be found at:
 
-https://github.com/eclipse-ee4j/mvc-api/issues
+https://github.com/jakartaee/mvc/issues
 
 The corresponding Javadocs can be found online at:
 

@@ -11,8 +11,8 @@ more.
 
 The project maintains the following source code repositories
 
-* https://github.com/eclipse-ee4j/mvc-api
-* https://github.com/eclipse-ee4j/mvc-tck
+* https://github.com/jakartaee/mvc
+* https://github.com/jakartaee/mvc-tck
 
 ## Eclipse Development Process
 
