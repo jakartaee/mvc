@@ -21,7 +21,7 @@ Goals
 The following are goals of the API:
 
 [horizontal]
-Goal 1:: Leverage existing Jakarta EE technologies like Jakarta Contexs and Dependency Injecttion [<<cdi20,2>>] and Jakarta Bean Validation [<<bv20,3>>].
+Goal 1:: Leverage existing Jakarta EE technologies like Jakarta Contexts and Dependency Injection [<<cdi20,2>>] and Jakarta Bean Validation [<<bv20,3>>].
 Goal 2:: Define a solid core to build MVC applications without necessarily supporting all the features in its first version.
 Goal 3:: Build on top of Jakarta RESTful Web Services for the purpose of re-using its matching and binding layers.
 Goal 4:: Provide built-in support for Jakarta Server Pages view languages.
