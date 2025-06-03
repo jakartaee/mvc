@@ -1,4 +1,4 @@
-[![Java CI with Maven](https://github.com/eclipse-ee4j/mvc-api/actions/workflows/main.yml/badge.svg)](https://github.com/eclipse-ee4j/mvc-api/actions/workflows/main.yml)
+[![Java CI with Maven](https://github.com/jakartaee/mvc/actions/workflows/main.yml/badge.svg)](https://github.com/jakartaee/mvc/actions/workflows/main.yml)
 
 # Jakarta MVC Specification and API
 
@@ -29,7 +29,7 @@ The PDF and HTML will be generated in `spec/target/generated-docs/`
 
 ## Tagging phrases for the TCK
 
-The [Jakarta MVC TCK](https://github.com/eclipse-ee4j/mvc-tck) is a suite of unit
+The [Jakarta MVC TCK](https://github.com/jakartaee/mvc-tck) is a suite of unit
 tests for validating the compliance of MVC implementations with the specification.
 
 The tests of the TCK are based on assertions representing sentences and phrases in this
@@ -58,7 +58,7 @@ defined id will get a letter assigned as their ID, in the order of apperance wit
 and is used in the TCK project to analyse the spec coverage in tests.
 
 The process is copied and adapted from the beanvalidation spec project
-(https://github.com/eclipse-ee4j/beanvalidation-api).
+(https://github.com/jakartaee/validation).
 
 ## TCK Challenge and resolution process for Jakarta MVC
 
