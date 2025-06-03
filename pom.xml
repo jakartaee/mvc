@@ -41,7 +41,7 @@
 
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/jakartaeej/mvc/issues</url>
+        <url>https://github.com/jakartaee/mvc/issues</url>
     </issueManagement>
 
     <mailingLists>
