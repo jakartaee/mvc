@@ -1,5 +1,5 @@
 
-// Copyright (c) 2020 Contributors to the Eclipse Foundation
+// Copyright (c) 2020, 2025 Contributors to the Eclipse Foundation
 //
 
 = Jakarta MVC Specification
@@ -7,6 +7,7 @@
 :email: https://dev.eclipse.org/mailman/listinfo/mvc-dev
 :version-label!:
 :doctype: book
+:docinfo: shared
 :license: Eclipse Foundation Specification License
 :source-highlighter: coderay
 :toc: left
