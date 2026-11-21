@@ -31,7 +31,7 @@ public interface ValidationError extends ParamError {
     /**
      * The underlying {@link ConstraintViolation} detected for the parameter.
      *
-     * @return The violation detected for the parameter
+     * @return The violation detected for the parameter, never <code>null</code>
      */
     ConstraintViolation<?> getViolation();
 

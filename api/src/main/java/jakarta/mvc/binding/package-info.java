@@ -18,6 +18,10 @@
 /**
  * Types related to the handling of data binding and validation.
  *
+ * <p>Unless otherwise noted, methods in this package that return a collection
+ * never return <code>null</code>. If there is nothing to return, an empty
+ * collection is returned instead.</p>
+ *
  * @version 1.0
  */
 package jakarta.mvc.binding;

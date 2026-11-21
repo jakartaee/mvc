@@ -132,6 +132,11 @@ public class FormController {
 Please note that it is very important for a controller to actually check the `BindingResult` for errors if it uses Jakarta MVC bindings.
 If a binding failed and the controller processes the value without checking for errors, the bound value may be empty or contain an invalid value.
 
+Controllers and views don't need to check the values returned by `BindingResult` for `null`.
+[tck-testable tck-id-binding-result-non-null]#The methods `getAllMessages()`, `getAllErrors()` and `getErrors(String)` of `BindingResult` MUST NOT return `null`. If there are no errors, an empty collection MUST be returned#.
+[tck-testable tck-id-binding-result-unknown-param]#Calling `getErrors(String)` with the name of a parameter that has no errors, or that doesn't exist, MUST return an empty set#.
+[tck-testable tck-id-param-error-non-null]#For every `ParamError` provided by `BindingResult`, `getMessage()` and `getParamName()` MUST NOT return `null`, and for every `ValidationError`, `getViolation()` MUST NOT return `null`#.
+
 Jakarta MVC implementations SHOULD log a warning if a request created data binding errors but the controller didn't invoke any method on `BindingResult`.
 
 [[converting_parameters]]
