@@ -55,23 +55,30 @@ public interface BindingResult {
      * getAllErrors().stream().map(ParamError::getMessage).collect(Collectors.toList())
      * </pre>
      *
-     * @return A list of human-readable messages
+     * <p>If there are no errors, an empty list is returned. This method
+     * never returns <code>null</code>.</p>
+     *
+     * @return A list of human-readable messages, never <code>null</code>
      */
     List<String> getAllMessages();
 
     /**
      * Returns an immutable set of all binding and validation errors.
+     * If there are no errors, an empty set is returned. This method never
+     * returns <code>null</code>.
      *
-     * @return All binding and validation errors.
+     * @return All binding and validation errors, never <code>null</code>
      */
     Set<ParamError> getAllErrors();
 
     /**
      * Returns an immutable set of all binding and validation errors for
-     * a specific parameter.
+     * a specific parameter. If there are no errors for the given parameter,
+     * including the case that no parameter with the given name exists, an
+     * empty set is returned. This method never returns <code>null</code>.
      *
      * @param param parameter name
-     * @return All binding and validation errors for the parameter.
+     * @return All binding and validation errors for the parameter, never <code>null</code>
      */
     Set<ParamError> getErrors(String param);
 

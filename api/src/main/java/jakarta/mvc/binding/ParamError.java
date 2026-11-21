@@ -28,7 +28,7 @@ public interface ParamError {
     /**
      * Returns a human-readable error message for this error.
      *
-     * @return The human-readable error message
+     * @return The human-readable error message, never <code>null</code>
      */
     String getMessage();
 
@@ -36,7 +36,7 @@ public interface ParamError {
      * The parameter name of the value that caused the error. This is usually
      * the name specified in the binding annotation (i.e. {@link jakarta.ws.rs.FormParam}).
      *
-     * @return The name of the parameter which caused the error
+     * @return The name of the parameter which caused the error, never <code>null</code>
      */
     String getParamName();
 
