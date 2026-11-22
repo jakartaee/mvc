@@ -2,6 +2,7 @@
 <!--
 
     Copyright (c) 2018 JSR 371 expert group and contributors
+    Copyright (c) 2026 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,6 +51,11 @@
 
     <xsl:param name="currentDate"/>
     <xsl:param name="revision"/>
+    <!--
+      ~ The specification version written to the audit file. The TCK coverage report only counts
+      ~ tests whose @SpecVersion matches this value exactly, so it must be the current spec version.
+      -->
+    <xsl:param name="specVersion"/>
 
     <!-- A regular apostroph; provided as a variable to avoid escaping issues -->
     <xsl:variable name="apos">'</xsl:variable>
@@ -136,6 +142,7 @@
         <xsl:comment>
 
     Copyright (c) 2016-2019 JSR 371 expert group and contributors
+    Copyright (c) 2026 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -158,7 +165,12 @@
         <xsl:text>&#10;</xsl:text>
 
         <specification xmlns="http://jboss.com/products/weld/tck/audit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://jboss.com/products/weld/tck/audit" name="Jakarta MVC Specification" version="1.1" id="mvc" generateSectionIds="true">
+            xsi:schemaLocation="http://jboss.com/products/weld/tck/audit" name="Jakarta MVC Specification" id="mvc" generateSectionIds="true">
+
+            <xsl:if test="not(normalize-space($specVersion))">
+                <xsl:message terminate="yes">Error: the specVersion parameter is required.</xsl:message>
+            </xsl:if>
+            <xsl:attribute name="version"><xsl:value-of select="$specVersion" /></xsl:attribute>
 
             <xsl:apply-templates mode="createAuditFile"/>
 

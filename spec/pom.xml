@@ -151,6 +151,10 @@
                                     <name>revision</name>
                                     <value>${project.version}</value>
                                 </parameter>
+                                <parameter>
+                                    <name>specVersion</name>
+                                    <value>${spec.version}</value>
+                                </parameter>
                             </parameters>
                         </transformationSet>
                     </transformationSets>
