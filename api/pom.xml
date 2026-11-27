@@ -68,7 +68,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.16.0</version>
                 <configuration>
                     <useIncrementalCompilation>false</useIncrementalCompilation>
                     <showWarnings>true</showWarnings>
@@ -81,7 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.11.2</version>
+                <version>3.12.0</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -95,17 +95,17 @@
                     <windowtitle>Jakarta MVC ${project.version} API</windowtitle>
                     <bottom><![CDATA[
 Comments to: <a href="mailto:mvc-dev@eclipse.org">mvc-dev@eclipse.org</a>.<br>
-Copyright &#169; 2017, 2025 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2017, 2026 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                     </bottom>
-                    <source>17</source>
+                    <source>21</source>
                     <docfilessubdirs>true</docfilessubdirs>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -117,7 +117,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
             </plugin>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <phase>validate</phase>
@@ -138,7 +138,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>3.8.0</version>
                 <executions>
                     <execution>
                         <id>attach-artifacts</id>
@@ -164,9 +164,9 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.10.5.0</version>
                 <configuration>
                     <threshold>High</threshold>
                     <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
@@ -204,19 +204,19 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>4.0.0</version>
+            <version>5.0.0-M1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.1.0</version>
+            <groupId>jakarta.cdi</groupId>
+            <artifactId>jakarta.cdi-api</artifactId>
+            <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.1.1</version>
+            <version>4.0.0-M1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -234,7 +234,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.8.13</version>
+                        <version>0.8.16</version>
                         <executions>
                             <execution>
                                 <id>default-instrument</id>
@@ -253,7 +253,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>3.2.0</version>
                         <executions>
                             <execution>
                                 <phase>prepare-package</phase>
@@ -275,7 +275,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.4.2</version>
+                        <version>3.5.1</version>
                         <executions>
                             <execution>
                                 <id>jacoco-instrumented</id>
@@ -305,7 +305,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.2.7</version>
+                        <version>3.2.8</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -345,7 +345,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <plugin>
                         <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>2.6</version>
+                        <version>2.7</version>
                         <executions>
                             <execution>
                                 <phase>process-sources</phase>
@@ -375,12 +375,12 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.26.0</version>
+                <version>3.28.0</version>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.10.5.0</version>
                 <configuration>
                     <threshold>High</threshold>
                     <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
